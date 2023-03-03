@@ -12,18 +12,18 @@ use App\Enums\CourseStatus;
 use App\Models\CourseCategory;
 use App\Models\CourseSubcategory;
 use Filament\Forms\Components\Grid;
-use App\Forms\Components\SelectIcon;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Components\Fieldset;
 use Filament\Forms\Components\Textarea;
-use App\Forms\Components\SimpleFieldset;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TimePicker;
-use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+use Filament\Forms\Concerns\InteractsWithForms;
+use App\Forms\Components\SimpleFieldset;
+use App\Forms\Components\SelectIcon;
 
 class CreateCourse extends Component implements HasForms
 {   
@@ -66,9 +66,7 @@ class CreateCourse extends Component implements HasForms
                             Select::make('category_id')
                                 ->label('General Category')
                                 ->options(function(){
-                                    return tenancy()->central(function ($tenant) {
-                                        return CourseCategory::get()->pluck('name', 'id');
-                                    });
+                                    return CourseCategory::get()->pluck('name', 'id');
                                 })
                                 ->required()
                                 ->preload()
@@ -78,9 +76,7 @@ class CreateCourse extends Component implements HasForms
                                 ->label('Specific Category')
                                 ->multiple()
                                 ->options(function(){
-                                    return tenancy()->central(function ($tenant) {
-                                        return CourseSubcategory::where('course_category_id', $this->category_id)->get()->pluck('name', 'id');
-                                    });
+                                    return CourseSubcategory::where('course_category_id', $this->category_id)->get()->pluck('name', 'id');
                                 })
                                 ->reactive()
                                 ->required()

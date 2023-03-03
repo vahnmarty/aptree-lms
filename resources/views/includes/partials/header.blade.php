@@ -2,10 +2,10 @@
     <div class="flex items-center justify-between">
         <section>
             <form>
-                <div class="relative hidden md:w-96">
+                <div class="relative hidden md:w-96 md:block">
                     <input type="search"  class="pl-4 border-gray-300 rounded-md w-96" placeholder="Search">
                 </div>
-                <x-heroicon-s-search class="w-5 h-5 text-gray-500"/>
+                <x-heroicon-s-search class="w-5 h-5 text-gray-500 md:hidden"/>
             </form>
         </section>
         <section>
