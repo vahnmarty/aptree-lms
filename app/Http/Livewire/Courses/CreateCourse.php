@@ -97,17 +97,15 @@ class CreateCourse extends Component implements HasForms
                                 ->placeholder('Enter description')
                                 ->required()
                                 ->columnSpan(['default' => 6]),
-                            // Select::make('tags')
-                            //     ->label('Keywords')
-                            //     ->multiple()
-                            //     ->searchable()
-                            //     ->preload()
-                            //     ->options(function(){
-                            //         return tenancy()->central(function ($tenant) {
-                            //             return Tag::get()->pluck('name', 'id');
-                            //         });
-                            //     })
-                            //     ->columnSpan('full'),
+                            Select::make('tags')
+                                ->label('Keywords')
+                                ->multiple()
+                                ->searchable()
+                                ->preload()
+                                ->options(function(){
+                                    return Tag::get()->pluck('name', 'id');
+                                })
+                                ->columnSpan(['default' => 6]),
 
                             TimePicker::make('estimated_time')
                                 ->placeholder('HH::mm')
@@ -126,7 +124,7 @@ class CreateCourse extends Component implements HasForms
                             Toggle::make('required_passing_modules')
                                 ->label('Require Passing all Modules?')
                                 ->inline()
-                                ->columnSpan(['default' => 6, 'md' => 2]),
+                                ->columnSpan(['default' => 6, 'md' => 3]),
                             ]),
                         ])->columnSpan(3),
                     SimpleFieldset::make('Media')
@@ -182,6 +180,7 @@ class CreateCourse extends Component implements HasForms
             # Relationships
             $course->subcategories()->attach($data['subcategories']);
             $course->instructors()->attach($data['instructors']);
+            $course->attachTags($data['tags']);
 
         } catch (\Throwable $th) {
 

@@ -11,7 +11,7 @@
     <div class="px-8 py-12 space-y-8 bg-gray-100">
         
         <section>
-            @livewire('tenant.user-course-reports')
+            
         </section>
     </div>
 </div>

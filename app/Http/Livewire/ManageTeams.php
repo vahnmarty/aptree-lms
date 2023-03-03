@@ -34,15 +34,9 @@ class ManageTeams extends Component implements HasForms, HasTable
         return view('livewire.manage-teams');
     }
 
-    protected function getTableQuery() 
+    protected function getTableQuery()
     {
-        if(Auth::user()->isAdmin()){
-            return Team::query();
-        }
-        
-        return Team::whereHas('users', function($query){
-            $query->where('users.id', Auth::id());
-        });
+        return Team::query();
     } 
 
     protected function getTableColumns(): array 
@@ -50,10 +44,6 @@ class ManageTeams extends Component implements HasForms, HasTable
         return [
             TextColumn::make('name'),
             TextColumn::make('users_count')->counts('users')->label('Members'),
-            TextColumn::make('invitations_count')
-                ->counts('invitations')
-                ->visible(fn():bool => auth()->user()->isAdmin())
-                ->label('Invites Sent'),
             TextColumn::make('owner.name')
         ];
     }
