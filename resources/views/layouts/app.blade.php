@@ -35,15 +35,17 @@
         @include('includes.partials.sidebar')
 
         <div class="flex-1">
-
-            <div>
+            @include('includes.partials.header')
+            <div class="px-8 bg-white">
                 @yield('header')
                 {{ $header ?? '' }}
             </div>
 
             <main class="flex-grow">
-                @yield('content')
+                <div class="px-8">
+                    @yield('content')
                 {{ $slot ?? '' }}
+                </div>
             </main>
         </div>
     </div>

@@ -2,7 +2,7 @@
     x-on:mouseenter="expand = true;"
     x-on:mouseleave="expand = false"
     :class="expand ? 'w-64' : 'w-14'"
-    class="min-h-screen overflow-hidden transition-all duration-200 ease-in-out bg-gray-600 border-r md:bg-white lg:block">
+    class="min-h-screen overflow-hidden transition-all duration-300 ease-in-out bg-gray-600 border-r md:bg-white lg:block">
     <div class="flex flex-col flex-grow min-h-screen py-5 overflow-y-auto">
         <div class="flex justify-start pl-3">
             <div class="flex items-center bg-transparent rounded-md">
@@ -16,7 +16,7 @@
             <div class="flex-1 space-y-1">
 
                 <a href="{{ url('dashboard') }}"
-                    class="{{ request()->is('dashboard*') ? 'border-l-4 border-orange-400 bg-gray-100 text-black' : 'text-gray-500 hover:bg-gray-100 border-l-4 border-transparent' }} group flex items-center px-2 py-2 text-sm "
+                    class="{{ request()->is('dashboard*') ? 'border-l-4 border-orange-400 bg-gray-100 text-black' : 'text-gray-500 hover:bg-gray-100 border-l-4 border-transparent' }} group flex items-center px-2 py-2 text-sm max-h-[40px] overflow-hidden "
                     aria-current="page">
                     <svg class="flex-shrink-0 w-6 h-6 ml-1 mr-4 text-gray-500" xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
@@ -31,7 +31,7 @@
                 </a>
 
                 <a href="{{ route('template.library') }}"
-                        class="{{ request()->is('template-library') ? 'border-l-4 border-orange-400 bg-gray-100 text-black' : 'text-gray-500 hover:bg-gray-100 border-l-4 border-transparent' }} group flex items-center px-2 py-2 text-sm ">
+                        class="{{ request()->is('template-library') ? 'border-l-4 border-orange-400 bg-gray-100 text-black' : 'text-gray-500 hover:bg-gray-100 border-l-4 border-transparent' }} group flex items-center px-2 py-2 text-sm max-h-[40px] overflow-hidden  ">
                         <svg class="flex-shrink-0 w-6 h-6 ml-1 mr-4 text-gray-500" xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
                             <path
@@ -47,7 +47,7 @@
                     </a>
                 
                 <a href="{{ route('profile.index') }}"
-                    class="{{ request()->is('profile*') ? 'border-l-4 border-orange-400 bg-gray-100 text-black' : 'text-gray-500 hover:bg-gray-100 border-l-4 border-transparent' }} group flex items-center px-2 py-2 text-sm ">
+                    class="{{ request()->is('profile*') ? 'border-l-4 border-orange-400 bg-gray-100 text-black' : 'text-gray-500 hover:bg-gray-100 border-l-4 border-transparent' }} group flex items-center px-2 py-2 text-sm max-h-[40px] overflow-hidden ">
                     <svg class="flex-shrink-0 w-6 h-6 ml-1 mr-4 text-gray-500" xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
                         <path fill-rule="evenodd"
@@ -60,7 +60,7 @@
                 </a>
 
                 <a href="{{ route('teams.index') }}"
-                    class="{{ request()->is('teams*') ? 'border-l-4 border-orange-400 bg-gray-100 text-black' : 'text-gray-500 hover:bg-gray-100 border-l-4 border-transparent' }} group flex items-center px-2 py-2 text-sm ">
+                    class="{{ request()->is('teams*') ? 'border-l-4 border-orange-400 bg-gray-100 text-black' : 'text-gray-500 hover:bg-gray-100 border-l-4 border-transparent' }} group flex items-center px-2 py-2 text-sm max-h-[40px] overflow-hidden ">
                     <svg class="flex-shrink-0 w-6 h-6 ml-1 mr-4 text-gray-500" xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
                         <path fill-rule="evenodd"
@@ -78,7 +78,7 @@
 
                 @if (auth()->user()->isAdmin())
                     <a href="{{ route('courses.index') }}"
-                        class="{{ request()->routeIs('courses*') ? 'border-l-4 border-orange-400 bg-gray-100 text-black' : 'text-gray-500 hover:bg-gray-100 border-l-4 border-transparent' }} group flex items-center px-2 py-2 text-sm ">
+                        class="{{ request()->routeIs('courses*') ? 'border-l-4 border-orange-400 bg-gray-100 text-black' : 'text-gray-500 hover:bg-gray-100 border-l-4 border-transparent' }} group flex items-center px-2 py-2 text-sm max-h-[40px] overflow-hidden ">
 
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                             class="flex-shrink-0 w-6 h-6 ml-1 mr-4 text-gray-500">
@@ -97,7 +97,7 @@
                     
                 @else
                     <a href="{{ route('courses.index') }}"
-                        class="{{ request()->routeIs('courses*') ? 'border-l-4 border-orange-400 bg-gray-100 text-black' : 'text-gray-500 hover:bg-gray-100 border-l-4 border-transparent' }} group flex items-center px-2 py-2 text-sm ">
+                        class="{{ request()->routeIs('courses*') ? 'border-l-4 border-orange-400 bg-gray-100 text-black' : 'text-gray-500 hover:bg-gray-100 border-l-4 border-transparent' }} group flex items-center px-2 py-2 text-sm max-h-[40px] overflow-hidden ">
 
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                             class="flex-shrink-0 w-6 h-6 ml-1 mr-4 text-gray-500">

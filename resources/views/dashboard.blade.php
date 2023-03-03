@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
 @section('header')
-<header class="px-8 py-6 bg-white">
-	<h1 class="text-2xl font-bold leading-7 lg:text-4xl text-darkgreen sm:leading-9 sm:truncate">Welcome Back, {{ auth()->user()->name }}</h1>
-	<p class="mt-4 text-gray-700 lg:mt-8">
+<div class="px-8 py-8 bg-white">
+	<h1 class="text-2xl font-bold lg:text-3xl text-darkgreen sm:truncate">Welcome Back, {{ auth()->user()->name }}</h1>
+	<p class="mt-3 text-sm text-gray-600 lg:mt-3">
 		You're on a roll, you've taken {{ auth()->user()->latest_taken_course_title }} course, and {{ auth()->user()->enrolled_pathways_count }} Paths. Keep on studying!
 	</p>
-</header>
+</div>
 @endsection
 
 @section('content')
