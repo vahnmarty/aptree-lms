@@ -3,7 +3,7 @@
         <h1 class="text-4xl font-bold leading-7 text-emerald-900 sm:leading-9">Course Library</h1>
         <div>
             @if(auth()->user()->isAdmin())
-            <a href="{{ route('courses.create') }}" type="button" class="btn-primary">
+            <a href="{{ route('courses.create') }}" type="button" class="inline-flex items-center w-full btn-primary">
                 <svg class="w-5 h-5 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                     stroke-width="1.5" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round"

@@ -39,7 +39,7 @@
 
             
             <div class="mt-4">
-                <button type="submit" class="btn-primary">Sign in</button>
+                <button type="submit" class="w-full font-bold btn-primary">Sign in</button>
             </div>
 
             <div class="relative flex items-center justify-center py-3 mt-3">
