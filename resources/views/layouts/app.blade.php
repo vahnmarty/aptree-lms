@@ -28,7 +28,7 @@
 
     @stack('head-scripts')
 </head>
-<body class="flex flex-col min-h-screen bg-gray-100 @if(config('wave.dev_bar')){{ 'pb-10' }}@endif">
+<body class="bg-gray-100">
 
     <div class="flex">
 
@@ -36,13 +36,13 @@
 
         <div class="flex-1">
             @include('includes.partials.header')
-            <div class="px-8 bg-white">
+            <div class="bg-white md:px-8">
                 @yield('header')
                 {{ $header ?? '' }}
             </div>
 
             <main class="flex-grow">
-                <div class="px-8">
+                <div class="md:px-8">
                     @yield('content')
                 {{ $slot ?? '' }}
                 </div>

@@ -1,19 +1,20 @@
-<header class="px-16 py-8 bg-white">
+<header class="px-6 py-4 bg-white md:py-8 md:px-16">
     <div class="flex items-center justify-between">
         <section>
-            <form action="">
-                <div class="relative">
+            <form>
+                <div class="relative hidden md:w-96">
                     <input type="search"  class="pl-4 border-gray-300 rounded-md w-96" placeholder="Search">
                 </div>
+                <x-heroicon-s-search class="w-5 h-5 text-gray-500"/>
             </form>
         </section>
         <section>
             <div class="flex items-center justify-end gap-6">
-                <a href="{{ route('courses.index') }}" class="text-sm text-darkgreen">
+                <a href="{{ route('courses.index') }}" class="hidden text-sm text-darkgreen md:block">
                     My Courses
                 </a>
 
-                <a href="{{ route('support') }}" class="text-sm text-darkgreen">
+                <a href="{{ route('support') }}" class="hidden text-sm text-darkgreen md:block">
                     Support
                 </a>
 

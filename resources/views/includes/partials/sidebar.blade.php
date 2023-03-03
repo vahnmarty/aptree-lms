@@ -1,8 +1,24 @@
-<div x-data="{ expand: false }" 
-    x-on:mouseenter="expand = true;"
-    x-on:mouseleave="expand = false"
+<div x-data="{ 
+        isMobile: false,
+        expand: false,
+        grow(){
+            if(!this.isMobile){
+                this.expand = true;
+            }
+        },
+        shrink(){
+            this.expand = false;
+        },
+        checkMobileScreen(){
+            this.isMobile = window.innerWidth <= 1024;
+        }
+     }" 
+    x-on:mouseenter="grow()"
+    x-on:mouseleave="shrink()"
+    x-init="checkMobileScreen()"
+    x-on:resize.window="checkMobileScreen()"
     :class="expand ? 'w-64' : 'w-14'"
-    class="min-h-screen overflow-hidden transition-all duration-300 ease-in-out bg-gray-600 border-r md:bg-white lg:block">
+    class="block min-h-screen transition-all duration-300 ease-in-out bg-white border-r md:overflow-hidden ">
     <div class="flex flex-col flex-grow min-h-screen py-5 overflow-y-auto">
         <div class="flex justify-start pl-3">
             <div class="flex items-center bg-transparent rounded-md">

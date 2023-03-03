@@ -104,7 +104,7 @@
                 <div class="p-4 bg-white border rounded-md shadow-md">
                     <div>
                         @if($course->icon == 'lightning')
-                        <x-icons.icon-lightning class="w-10 h-10 text-gray-600"/>
+                        <x-heroicon-s-lightning-bolt class="w-10 h-10 text-gray-600"/>
                         @else
                         <x-heroicon-s-academic-cap class="w-10 h-10 text-gray-600"/>
                         @endif
