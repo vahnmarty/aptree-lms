@@ -19,3 +19,31 @@
 .max-w-sidebar{
     max-width: 54px;
 }
+
+.filament-forms-component-container input{
+   @apply  placeholder:text-gray-400 placeholder:font-light;
+   border-radius: 4px;
+}
+
+.filament-forms-component-container textarea{
+    @apply  placeholder:text-gray-400 placeholder:font-light;
+    border-radius: 4px;
+ }
+
+.filament-forms-component-container .choices__inner{
+    @apply  placeholder:text-gray-400 placeholder:font-light;
+    border-radius: 4px;
+ }
+
+ .filament-forms-component-container select{
+    @apply  placeholder:text-gray-400 placeholder:font-light;
+    border-radius: 4px;
+ }
+
+.filament-forms-field-wrapper button{
+    border-radius: 4px;
+}
+
+.filament-forms-toggle-component{
+    @apply rounded-full !important;
+}

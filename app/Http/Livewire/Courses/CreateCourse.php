@@ -65,6 +65,7 @@ class CreateCourse extends Component implements HasForms
                                 ->columnSpan(['default' => 6, 'sm' => 5, 'md' => 5])
                                 ->required(),
                             SelectIcon::make('icon')
+                                ->label('Select Icon')
                                 ->required()
                                 ->columnSpan(['lg' => 1, 'xl' => 1, 'default' => 2]),
                             Select::make('category_id')
