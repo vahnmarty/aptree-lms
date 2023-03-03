@@ -22,7 +22,7 @@
         </style>
     </head>
     <body>
-        <div class="antialiased text-gray-900">
+        <div class="antialiased text-gray-600">
             {{ $slot }}
         </div>
     </body>

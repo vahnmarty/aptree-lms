@@ -100,7 +100,7 @@
 
             <div class="flex justify-center mt-8 divide-x">
 
-                <p class="pr-8 text-sm">New User? <a href="" class="font-bold text-darkgreen">Sign Up!</a></p>
+                <p class="pr-8 text-sm">New User? <a href="{{ url('register') }}" class="font-bold text-darkgreen">Sign Up!</a></p>
                 <p class="pl-8 text-sm"><a href="{{ route('password.request') }}" class="font-bold text-darkgreen">Reset Password</a></p>
             </div>
 
