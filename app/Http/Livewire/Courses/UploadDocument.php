@@ -26,7 +26,7 @@ class UploadDocument extends Component implements HasForms
     
     public function render()
     {
-        return view('livewire.tenant.courses.upload-document');
+        return view('livewire.courses.upload-document');
     }
 
     public function mount($moduleId)

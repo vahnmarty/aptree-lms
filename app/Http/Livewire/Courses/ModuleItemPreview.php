@@ -15,7 +15,7 @@ class ModuleItemPreview extends Component
 
     public function render()
     {
-        return view('livewire.tenant.courses.module-item-preview')->layout('theme::layouts.slider');
+        return view('livewire.courses.module-item-preview')->layout('theme::layouts.slider');
     }
 
     public function mount($id)

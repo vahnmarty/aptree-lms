@@ -33,7 +33,7 @@ class EditCourse extends Component implements HasForms
 
     public function render()
     {
-        return view('livewire.tenant.courses.edit-course');
+        return view('livewire.courses.edit-course');
     }
 
     public function mount($id)

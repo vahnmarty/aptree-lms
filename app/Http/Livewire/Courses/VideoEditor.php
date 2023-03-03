@@ -34,7 +34,7 @@ class VideoEditor extends Component  implements HasForms
 
     public function render()
     {
-        return view('livewire.tenant.courses.video-editor');
+        return view('livewire.courses.video-editor');
     }
 
     public function mount($moduleId)

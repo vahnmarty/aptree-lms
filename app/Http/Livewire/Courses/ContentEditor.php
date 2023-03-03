@@ -34,7 +34,7 @@ class ContentEditor extends Component implements HasForms
     
     public function render()
     {
-        return view('livewire.tenant.courses.content-editor');
+        return view('livewire.courses.content-editor');
     }
 
     public function mount($moduleId)

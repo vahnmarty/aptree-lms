@@ -21,7 +21,7 @@ class CreateModule extends Component implements HasForms
     
     public function render()
     {   
-        return view('livewire.tenant.courses.create-module');
+        return view('livewire.courses.create-module');
     }
 
     public function mount($id)

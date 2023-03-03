@@ -10,6 +10,6 @@ class TemplateLibrary extends Component
     
     public function render()
     {
-        return view('livewire.tenant.template-library');
+        return view('livewire.template-library');
     }
 }

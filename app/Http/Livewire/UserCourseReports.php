@@ -16,7 +16,7 @@ class UserCourseReports extends Component implements HasTable
     
     public function render()
     {
-        return view('livewire.tenant.user-course-reports');
+        return view('livewire.user-course-reports');
     }
 
     protected function getTableQuery() 

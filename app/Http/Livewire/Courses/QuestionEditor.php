@@ -37,7 +37,7 @@ class QuestionEditor extends Component implements HasForms
     
     public function render()
     {
-        return view('livewire.tenant.courses.question-editor');
+        return view('livewire.courses.question-editor');
     }
 
     public function mount($moduleId)

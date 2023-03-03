@@ -27,7 +27,7 @@ class TeamInvitations extends Component implements HasTable
 
     public function render()
     {
-        return view('livewire.tenant.team-invitations');
+        return view('livewire.team-invitations');
     }
 
     public function mount($id)

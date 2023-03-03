@@ -17,7 +17,7 @@ class ManageCourses extends Component
 
     public function render()
     {
-        return view('livewire.tenant.courses.manage-courses');
+        return view('livewire.courses.manage-courses');
     }
 
     public function mount()

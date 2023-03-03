@@ -22,7 +22,7 @@ class EditModule extends Component implements HasForms
     
     public function render()
     {   
-        return view('livewire.tenant.courses.edit-module');
+        return view('livewire.courses.edit-module');
     }
 
     public function setModule($id)

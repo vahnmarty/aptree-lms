@@ -8,6 +8,6 @@ class ManageBilling extends Component
 {
     public function render()
     {
-        return view('livewire.tenant.manage-billing');
+        return view('livewire.manage-billing');
     }
 }

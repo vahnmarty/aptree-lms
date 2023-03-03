@@ -38,7 +38,7 @@ class CreateCourse extends Component implements HasForms
     
     public function render()
     {
-        return view('livewire.tenant.courses.create-course');
+        return view('livewire.courses.create-course');
     }
 
     public function mount()

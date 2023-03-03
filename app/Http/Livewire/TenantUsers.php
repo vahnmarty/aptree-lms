@@ -17,7 +17,7 @@ class TenantUsers extends Component implements HasTable
     
     public function render()
     {
-        return view('livewire.tenant.tenant-users');
+        return view('livewire.tenant-users');
     }
 
     protected function getTableQuery() 

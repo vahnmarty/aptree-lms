@@ -38,7 +38,7 @@ class CoursePlayer extends Component
 
     public function render()
     {
-        return view('livewire.tenant.courses.course-player')->layout('theme::layouts.slider');
+        return view('livewire.courses.course-player')->layout('theme::layouts.slider');
     }
 
     public function mount($uuid)

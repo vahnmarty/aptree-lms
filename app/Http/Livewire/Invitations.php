@@ -8,6 +8,6 @@ class Invitations extends Component
 {
     public function render()
     {
-        return view('livewire.tenant.invitations');
+        return view('livewire.invitations');
     }
 }

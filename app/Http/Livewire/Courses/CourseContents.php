@@ -31,7 +31,7 @@ class CourseContents extends Component
         $this->modules = $this->course->modules()->orderBy('order')->get();
 
         
-        return view('livewire.tenant.courses.course-contents');
+        return view('livewire.courses.course-contents');
     }
 
     public function mount($id)

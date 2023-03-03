@@ -31,7 +31,7 @@ class ManageTeams extends Component implements HasForms, HasTable
     
     public function render()
     {
-        return view('livewire.tenant.manage-teams');
+        return view('livewire.manage-teams');
     }
 
     protected function getTableQuery() 
