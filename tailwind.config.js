@@ -25,6 +25,10 @@ module.exports = {
             emerald: colors.emerald,
             indigo: colors.indigo,
             yellow: colors.yellow,
+            danger: colors.rose,
+            primary: colors.emerald,
+            success: colors.green,
+            warning: colors.yellow,
             darkgreen: '#2F5662'
         }
     },
