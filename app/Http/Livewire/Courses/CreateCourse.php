@@ -49,20 +49,24 @@ class CreateCourse extends Component implements HasForms
     protected function getFormSchema(): array
     {
         return [
-            Grid::make(5)
+            Grid::make([
+                'default' => 1,
+                'sm' => 1,
+                'lg' => 5,
+            ])
                 ->schema([
                     SimpleFieldset::make('Form')
                         ->schema([
-                            Grid::make(5)
+                            Grid::make(['default' => 1, 'lg' => 6])
                             ->schema([
                             TextInput::make('title')
                                 ->label('Course Title')
                                 ->placeholder('Enter your course title')
-                                ->columnSpan(4)
+                                ->columnSpan(['default' => 6, 'sm' => 5, 'md' => 5])
                                 ->required(),
                             SelectIcon::make('icon')
                                 ->required()
-                                ->columnSpan(1),
+                                ->columnSpan(['lg' => 1, 'xl' => 1, 'default' => 2]),
                             Select::make('category_id')
                                 ->label('General Category')
                                 ->options(function(){
@@ -71,28 +75,27 @@ class CreateCourse extends Component implements HasForms
                                 ->required()
                                 ->preload()
                                 ->searchable()
-                                ->columnSpan('full'),
+                                ->columnSpan(['default' => 6, 'md' => 3]),
                             Select::make('subcategories')
                                 ->label('Specific Category')
-                                ->multiple()
+                                ->columnSpan(['default' => 6, 'md' => 3])
                                 ->options(function(){
                                     return CourseSubcategory::where('course_category_id', $this->category_id)->get()->pluck('name', 'id');
                                 })
                                 ->reactive()
                                 ->required()
                                 ->preload()
-                                ->searchable()
-                                ->columnSpan('full'),
+                                ->searchable(),
                             Select::make('instructors')
                                 ->multiple()
                                 ->searchable()
                                 ->preload()
                                 ->options(User::get()->pluck('name', 'id'))
-                                ->columnSpan('full'),
+                                ->columnSpan(['default' => 6]),
                             Textarea::make('description')
                                 ->placeholder('Enter description')
                                 ->required()
-                                ->columnSpan('full'),
+                                ->columnSpan(['default' => 6]),
                             // Select::make('tags')
                             //     ->label('Keywords')
                             //     ->multiple()
@@ -106,7 +109,9 @@ class CreateCourse extends Component implements HasForms
                             //     ->columnSpan('full'),
 
                             TimePicker::make('estimated_time')
-                                ->placeholder('HH::mm')->withoutSeconds(),
+                                ->placeholder('HH::mm')
+                                ->withoutSeconds()
+                                ->columnSpan(['default' => 3, 'md' => 2]),
                             Select::make('passing_score')
                                 ->label('Passing score')
                                 ->preload()
@@ -115,8 +120,12 @@ class CreateCourse extends Component implements HasForms
                                     return $this->getScorePercentages();
                                 })
                                 ->required()
-                                ->default(10),
-                            Toggle::make('required_passing_modules')->label('Require Passing all Modules?')->inline()->columnSpan(3)
+                                ->default(10)
+                                ->columnSpan(['default' => 3, 'md' => 1]),
+                            Toggle::make('required_passing_modules')
+                                ->label('Require Passing all Modules?')
+                                ->inline()
+                                ->columnSpan(['default' => 6, 'md' => 2]),
                             ]),
                         ])->columnSpan(3),
                     SimpleFieldset::make('Media')
