@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.text-primary{
+    color: #2F5662;
+}
+
+.bg-primary{
+    background-color: #2F5662;
+}
+
+.btn-primary{
+    @apply w-full py-3 font-bold text-white rounded-md bg-primary ;
+}
