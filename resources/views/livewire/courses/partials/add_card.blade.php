@@ -7,14 +7,14 @@
         <div class="flex gap-1">
 
             <!-- Modals -->
-            <x-modal-lg ref="content">
+            <x-modal-xl ref="content">
                 <x-slot name="title">
                     Content Editor
                 </x-slot>
                 <div class="pt-4">
                     @livewire('courses.content-editor', ['moduleId' => $module_id])
                 </div>
-            </x-modal-lg>
+            </x-modal-xl>
             <x-modal ref="upload">
                 <x-slot name="title">
                     Upload Document

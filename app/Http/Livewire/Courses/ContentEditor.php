@@ -72,8 +72,38 @@ class ContentEditor extends Component implements HasForms
                 ->columns(2)
                 ->label('Image & Text')
                 ->schema([
-                    FileUpload::make('image')->disk('do')->directory('modules')->visibility('public')->preserveFilenames(),
-                    Textarea::make('content')->placeholder('Enter description here')->required(),
+                    FileUpload::make('image')
+                        ->disk('do')
+                        ->directory('modules')
+                        ->visibility('public')
+                        ->preserveFilenames()
+                        ->panelAspectRatio('2:1')
+                        ->panelLayout('integrated'),
+                    RichEditor::make('content')
+                        ->label('')
+                        ->placeholder('Enter description here')
+                        ->toolbarButtons([
+                            'blockquote',
+                            'bold',
+                            'bulletList',
+                            'codeBlock',
+                            'h2',
+                            'italic',
+                            'link',
+                            'orderedList',
+                            'redo',
+                            'strike',
+                            'undo',
+                        ])
+                        ->disableAllToolbarButtons()
+                        ->enableToolbarButtons([
+                            'bold',
+                            'bulletList',
+                            'codeBlock',
+                            'italic',
+                            'strike',
+                        ])
+                        ->required(),
                 ]);
         }
 

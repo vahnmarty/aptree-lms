@@ -93,3 +93,11 @@ Default
 .modal .filament-forms-field-wrapper-label span{
     @apply text-base text-darkgreen;
 }
+
+.filepond--drop-label{
+    @apply bg-gray-200 rounded-sm;
+}
+
+trix-editor#content{
+    height: 240px;
+}

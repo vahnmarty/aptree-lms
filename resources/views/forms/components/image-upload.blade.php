@@ -2,7 +2,7 @@
     :component="$getFieldWrapperView()"
     :id="$getId()"
     :label="$getLabel()"
-    :label-sr-only="$isLabelHidden()"
+    :label-sr-only="$isAvatar() || $isLabelHidden()"
     :helper-text="$getHelperText()"
     :hint="$getHint()"
     :hint-action="$getHintAction()"
@@ -11,37 +11,88 @@
     :required="$isRequired()"
     :state-path="$getStatePath()"
 >
-    <div x-data="{ 
-            state: $wire.entangle('{{ $getStatePath() }}').defer,
-            preview: null,
-            uploadFile(image){
-                var url = URL.createObjectURL(image);
-                this.preview = url;
-
-                @this.upload('state', image, (uploadedFilename) => {
-                    // Success callback.
-                }, () => {
-                    // Error callback.
-                }, (event) => {
-                    // Progress callback.
-                    // event.detail.progress contains a number between 1 and 100 as the upload progresses.
-                })
-            }
-         }">
-        <p class="text-sm font-light text-gray-600">This photo will be displayed as the cover image</p>
-        <label class="block p-4 bg-white border rounded-sm cursor-pointer">
-            <input type="file" accept="image/png, image/gif, image/jpeg" class="hidden" 
-            x-on:change="uploadFile($event.target.files[0])" x-model="state">
-            <div x-show="preview" x-cloak class="flex justify-center py-4 mb-2 bg-gray-100 rounded-sm">
-                <img :src="preview" class="h-36">
-            </div>
+    @php
+        $imageCropAspectRatio = $getImageCropAspectRatio();
+        $imageResizeTargetHeight = $getImageResizeTargetHeight();
+        $imageResizeTargetWidth = $getImageResizeTargetWidth();
+        $imageResizeMode = $getImageResizeMode();
+        $imageResizeUpscale = $getImageResizeUpscale();
+        $shouldTransformImage = $imageCropAspectRatio || $imageResizeTargetHeight || $imageResizeTargetWidth;
+    @endphp
+    <div
+        x-data="fileUploadFormComponent({
+            acceptedFileTypes: {{ json_encode($getAcceptedFileTypes()) }},
+            canDownload: {{ $canDownload() ? 'true' : 'false' }},
+            canOpen: {{ $canOpen() ? 'true' : 'false' }},
+            canPreview: {{ $canPreview() ? 'true' : 'false' }},
+            canReorder: {{ $canReorder() ? 'true' : 'false' }},
+            deleteUploadedFileUsing: async (fileKey) => {
+                return await $wire.deleteUploadedFile('{{ $getStatePath() }}', fileKey)
+            },
+            getUploadedFileUrlsUsing: async () => {
+                return await $wire.getUploadedFileUrls('{{ $getStatePath() }}')
+            },
+            imageCropAspectRatio: {{ $imageCropAspectRatio ? "'{$imageCropAspectRatio}'" : 'null' }},
+            imagePreviewHeight: {{ ($height = $getImagePreviewHeight()) ? "'{$height}'" : 'null' }},
+            imageResizeMode: {{ $imageResizeMode ? "'{$imageResizeMode}'" : 'null' }},
+            imageResizeTargetHeight: {{ $imageResizeTargetHeight ? "'{$imageResizeTargetHeight}'" : 'null' }},
+            imageResizeTargetWidth: {{ $imageResizeTargetWidth ? "'{$imageResizeTargetWidth}'" : 'null' }},
+            imageResizeUpscale: {{ $imageResizeUpscale ? 'true' : 'false' }},
+            isAvatar: {{ $isAvatar() ? 'true' : 'false' }},
+            loadingIndicatorPosition: '{{ $getLoadingIndicatorPosition() }}',
+            locale: @js(app()->getLocale()),
+            panelAspectRatio: {{ ($aspectRatio = $getPanelAspectRatio()) ? "'{$aspectRatio}'" : 'null' }},
+            panelLayout: {{ ($layout = $getPanelLayout()) ? "'{$layout}'" : 'null' }},
+            placeholder: @js($getPlaceholder()),
+            maxSize: {{ ($size = $getMaxSize()) ? "'{$size} KB'" : 'null' }},
+            minSize: {{ ($size = $getMinSize()) ? "'{$size} KB'" : 'null' }},
+            removeUploadedFileUsing: async (fileKey) => {
+                return await $wire.removeUploadedFile('{{ $getStatePath() }}', fileKey)
+            },
+            removeUploadedFileButtonPosition: '{{ $getRemoveUploadedFileButtonPosition() }}',
+            reorderUploadedFilesUsing: async (files) => {
+                return await $wire.reorderUploadedFiles('{{ $getStatePath() }}', files)
+            },
+            shouldAppendFiles: {{ $shouldAppendFiles() ? 'true' : 'false' }},
+            shouldOrientImageFromExif: {{ $shouldOrientImageFromExif() ? 'true' : 'false' }},
+            shouldTransformImage: {{ $shouldTransformImage ? 'true' : 'false' }},
+            state: $wire.{{ $applyStateBindingModifiers('entangle(\'' . $getStatePath() . '\')') }},
+            uploadButtonPosition: '{{ $getUploadButtonPosition() }}',
+            uploadProgressIndicatorPosition: '{{ $getUploadProgressIndicatorPosition() }}',
+            uploadUsing: (fileKey, file, success, error, progress) => {
+                $wire.upload(`{{ $getStatePath() }}.${fileKey}`, file, () => {
+                    success(fileKey)
+                }, error, progress)
+            },
+        })"
+        wire:ignore
+        {!! ($id = $getId()) ? "id=\"{$id}\"" : null !!}
+        style="min-height: {{ $isAvatar() ? '8em' : ($getPanelLayout() === 'compact' ? '2.625em' : '4.75em') }}"
+        {{ $attributes->merge($getExtraAttributes())->class([
+            'filament-forms-file-upload-component',
+            'w-32 mx-auto' => $isAvatar(),
+        ]) }}
+        {{ $getExtraAlpineAttributeBag() }}
+    >
+        <label class="block p-4 py-10 bg-gray-200 rounded-md">
             <div class="flex flex-col items-center justify-center">
-                <div class="flex items-center justify-center w-12 h-12 bg-gray-100 rounded-full">
-                    <x-heroicon-o-cloud-upload class="w-6 h-6 text-gray-700"/>
-                </div>
-                <p class="mt-2"><strong class="text-orange-400">Click to upload </strong><span>or drag and drop</span></p>
-                <p class="mt-1 text-sm font-light text-gray-500">PNG or JPG (max. 800x400px)</p>
+                <x-heroicon-s-upload class="w-10 h-10"/>
+                <p class="mt-8 text-sm font-normal">Drag and Drop Your Image</p>
+                <p class="text-sm font-normal">or</p>
+                <p class="font-normal text-blue-600">Browse files</p>
             </div>
+            <input
+                x-ref="input"
+                {{ $isDisabled() ? 'disabled' : '' }}
+                {{ $isMultiple() ? 'multiple' : '' }}
+                type="file"
+                class="hidden"
+                {{ $getExtraInputAttributeBag() }}
+                dusk="filament.forms.{{ $getStatePath() }}"
+            />
         </label>
+        
+
+        
     </div>
 </x-dynamic-component>
