@@ -10,6 +10,7 @@ use App\Models\Tenant;
 use Livewire\Component;
 use App\Enums\CourseStatus;
 use App\Models\CourseCategory;
+use App\Models\CourseSubcategory;
 use Filament\Forms\Components\Grid;
 use App\Forms\Components\SelectIcon;
 use Filament\Forms\Components\Select;
@@ -42,68 +43,90 @@ class EditCourse extends Component implements HasForms
         $this->course_id = $id;
 
         $this->form->fill($this->course->toArray());
+        $this->subcategories = $this->course->subcategories->pluck('id');
+        $this->instructors = $this->course->instructors->pluck('id');
+        $this->tags = $this->course->tags->pluck('id');
     }
 
     protected function getFormSchema(): array
     {
         return [
-            Grid::make(5)
+            Grid::make([
+                'default' => 1,
+                'sm' => 1,
+                'lg' => 5,
+            ])
                 ->schema([
                     SimpleFieldset::make('Form')
                         ->schema([
-                            Grid::make(5)
+                            Grid::make(['default' => 1, 'lg' => 6])
                             ->schema([
                             TextInput::make('title')
                                 ->label('Course Title')
                                 ->placeholder('Enter your course title')
-                                ->columnSpan(4)
+                                ->columnSpan(['default' => 6, 'sm' => 5, 'md' => 5])
                                 ->required(),
                             SelectIcon::make('icon')
+                                ->label('Select Icon')
                                 ->required()
-                                ->columnSpan(1),
-                            Select::make('category')
+                                ->columnSpan(['lg' => 1, 'xl' => 1, 'default' => 2]),
+                            Select::make('category_id')
+                                ->label('General Category')
                                 ->options(function(){
-                                    return tenancy()->central(function ($tenant) {
-                                        return CourseCategory::get()->pluck('name', 'id');
-                                    });
+                                    return CourseCategory::get()->pluck('name', 'id');
                                 })
                                 ->required()
                                 ->preload()
                                 ->searchable()
-                                ->columnSpan(3),
-                            TimePicker::make('estimated_time')
-                                ->placeholder('HH::mm')->withoutSeconds()->columnSpan(2),
+                                ->columnSpan(['default' => 6, 'md' => 3]),
+                            Select::make('subcategories')
+                                ->label('Specific Category')
+                                ->columnSpan(['default' => 6, 'md' => 3])
+                                ->options(function(){
+                                    return CourseSubcategory::where('course_category_id', $this->category_id)->get()->pluck('name', 'id');
+                                })
+                                ->reactive()
+                                ->required()
+                                ->preload()
+                                ->searchable(),
                             Select::make('instructors')
                                 ->multiple()
                                 ->searchable()
                                 ->preload()
                                 ->options(User::get()->pluck('name', 'id'))
-                                ->columnSpan('full'),
+                                ->columnSpan(['default' => 6]),
                             Textarea::make('description')
                                 ->placeholder('Enter description')
                                 ->required()
-                                ->columnSpan('full'),
+                                ->columnSpan(['default' => 6]),
                             Select::make('tags')
                                 ->label('Keywords')
                                 ->multiple()
                                 ->searchable()
                                 ->preload()
                                 ->options(function(){
-                                    return tenancy()->central(function ($tenant) {
-                                        return Tag::get()->pluck('name', 'id');
-                                    });
+                                    return Tag::get()->pluck('name', 'id');
                                 })
-                                ->columnSpan('full'),
+                                ->columnSpan(['default' => 6]),
+
+                            TimePicker::make('estimated_time')
+                                ->placeholder('HH::mm')
+                                ->withoutSeconds()
+                                ->columnSpan(['default' => 3, 'md' => 2]),
                             Select::make('passing_score')
-                                ->label('Set passing score')
+                                ->label('Passing score')
                                 ->preload()
                                 ->reactive()
                                 ->options(function(){
                                     return $this->getScorePercentages();
                                 })
                                 ->required()
-                                ->default(10),
-                            Toggle::make('required_passing_modules')->label('Require Passing all Modules?')->inline()->columnSpan(3)
+                                ->default(10)
+                                ->columnSpan(['default' => 3, 'md' => 1]),
+                            Toggle::make('required_passing_modules')
+                                ->label('Require Passing all Modules?')
+                                ->inline()
+                                ->columnSpan(['default' => 6, 'md' => 3]),
                             ]),
                         ])->columnSpan(3),
                     SimpleFieldset::make('Media')

@@ -16,7 +16,6 @@
                 <span class="px-1.5 py-0.5 text-darkgreen rounded-sm bg-gray-300 text-sm font-normal">2</span>
                 <span class="ml-2 font-normal text-gray-500">Content</span>
             </div>
-            
         </nav>
         <section class="mt-8">
             <form action="" wire:submit.prevent="submit">

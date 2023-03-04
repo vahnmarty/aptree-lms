@@ -16,8 +16,6 @@ class CreateModule extends Component implements HasForms
     use InteractsWithForms;
 
     public $title, $icon, $description;
-
-    public $tenant;
     
     public function render()
     {   
@@ -27,7 +25,6 @@ class CreateModule extends Component implements HasForms
     public function mount($id)
     {
         $this->course_id = $id;
-        $this->tenant = tenant();
     }
 
     protected function getFormSchema(): array

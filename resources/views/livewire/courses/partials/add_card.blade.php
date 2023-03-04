@@ -12,7 +12,7 @@
                     Content Editor
                 </x-slot>
                 <div class="pt-4">
-                    @livewire('tenant.courses.content-editor', ['moduleId' => $module_id])
+                    @livewire('courses.content-editor', ['moduleId' => $module_id])
                 </div>
             </x-modal-lg>
             <x-modal ref="upload">
@@ -20,7 +20,7 @@
                     Upload Document
                 </x-slot>
                 <div class="pt-4">
-                    @livewire('tenant.courses.upload-document', ['moduleId' => $module_id])
+                    @livewire('courses.upload-document', ['moduleId' => $module_id])
                 </div>
             </x-modal>
 
@@ -29,7 +29,7 @@
                     Add Video
                 </x-slot>
                 <div class="pt-4">
-                    @livewire('tenant.courses.video-editor', ['moduleId' => $module_id])
+                    @livewire('courses.video-editor', ['moduleId' => $module_id])
                 </div>
             </x-modal-lg>
 
@@ -38,7 +38,7 @@
                     Questions and Answers
                 </x-slot>
                 <div class="pt-4">
-                    @livewire('tenant.courses.question-editor', ['moduleId' => $module_id])
+                    @livewire('courses.question-editor', ['moduleId' => $module_id])
                 </div>
             </x-modal-lg>
             

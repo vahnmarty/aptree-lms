@@ -42,9 +42,9 @@
             </div>
 
             <main class="flex-grow">
-                <div class="md:px-8">
+                <div class="bg-white">
                     @yield('content')
-                {{ $slot ?? '' }}
+                    {{ $slot ?? '' }}
                 </div>
             </main>
         </div>

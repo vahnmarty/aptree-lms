@@ -180,7 +180,9 @@ class CreateCourse extends Component implements HasForms
             # Relationships
             $course->subcategories()->attach($data['subcategories']);
             $course->instructors()->attach($data['instructors']);
-            $course->attachTags($data['tags']);
+            $course->tags()->attach($data['tags']);
+            
+            //$course->attachTags($data['tags']);
 
         } catch (\Throwable $th) {
 

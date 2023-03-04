@@ -1,4 +1,4 @@
-<div>
+<div class="bg-white">
     <header class="flex justify-between px-8 py-6 bg-white">
         <h1 class="text-3xl font-bold leading-7 text-darkgreen sm:leading-9">Add New Course</h1>
         <div>
@@ -19,7 +19,7 @@
                 Create Module
             </x-slot>
             <div class="pt-4">
-                @livewire('tenant.courses.create-module', ['id' => $course->id])
+                @livewire('courses.create-module', ['id' => $course->id])
             </div>
         </x-modal>
     
@@ -29,21 +29,21 @@
                 Edit Module
             </x-slot>
             <div class="pt-4">
-                @livewire('tenant.courses.edit-module')
+                @livewire('courses.edit-module')
             </div>
         </x-modal>
     
     
         <div class="px-8 py-12 bg-gray-100 text-darkgreen">
             <nav class="flex items-center space-x-4" aria-label="Tabs">
+                <a href="{{ route('courses.edit', $course->id) }}">
+                    <span class="px-1.5 py-0.5 text-darkgreen rounded-sm bg-gray-300 text-sm font-normal">1</span>
+                    <span class="ml-2 font-normal text-gray-400 hover:text-darkgreen">Overview</span>
+                </a>
     
                 <div>
-                    <span class="rounded-sm bg-gray-300 px-1.5 py-0.5 text-sm font-bold text-darkgreen">1</span>
-                    <span class="ml-2 font-bold text-gray-500">Overview</span>
-                </div>
-                <div>
-                    <span class="rounded-sm bg-darkgreen px-1.5 py-0.5 text-sm font-bold text-white">2</span>
-                    <span class="ml-2 font-bold text-darkgreen">Content</span>
+                    <span class="px-1.5 py-0.5 text-white rounded-md bg-darkgreen text-sm font-bold">2</span>
+                    <span class="ml-2 font-semibold text-darkgreen">Content</span>
                 </div>
             </nav>
             <section class="mt-8">
