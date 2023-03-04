@@ -1,7 +1,16 @@
 <form action="" wire:submit.prevent="submit">
     {{ $this->form }}
 
-    <div class="mt-8">
-        <button type="submit" class="btn-primary">Save & Continue</button>
+    <div class="py-4 pt-8 mt-32 border-t">
+        <div class="flex justify-between">
+            <h1 class="text-lg font-bold text-darkgreen">Create Module</h1>
+            <div>
+                <div class="flex gap-3">
+                    <button type="button" class="btn-light">Cancel</button>
+                    <button type="submit" class="btn-primary btn-sm">Save</button>
+                </div>
+            </div>
+        </div>
     </div>
+    
 </form>

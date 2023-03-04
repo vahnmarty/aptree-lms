@@ -1,27 +1,15 @@
 <div class="bg-white">
     <header class="flex justify-between px-8 py-6 bg-white">
         <h1 class="text-3xl font-bold leading-7 text-darkgreen sm:leading-9">Add New Course</h1>
-        <div>
-            @if($course->status == '0')
-            <button wire:click="publish" type="button" class="btn-primary">Publish Now</button>
-            @endif
-
-            @if($course->status == '1')
-            <a href="{{ route('courses.show', $course->id) }}" class="btn-primary">Open Course</a>
-            @endif
-        </div>
     </header>
     
     <div>
     
-        <x-modal ref="module-create">
-            <x-slot name="title">
-                Create Module
-            </x-slot>
+        <x-modal-lg ref="module-create">
             <div class="pt-4">
                 @livewire('courses.create-module', ['id' => $course->id])
             </div>
-        </x-modal>
+        </x-modal-lg>
     
     
         <x-modal ref="module-edit">
@@ -36,34 +24,33 @@
     
         <div class="px-8 py-12 bg-gray-100 text-darkgreen">
             <nav class="flex items-center space-x-4" aria-label="Tabs">
-                <a href="{{ route('courses.edit', $course->id) }}">
-                    <span class="px-1.5 py-0.5 text-darkgreen rounded-sm bg-gray-300 text-sm font-normal">1</span>
-                    <span class="ml-2 font-normal text-gray-400 hover:text-darkgreen">Overview</span>
+                <a href="{{ route('courses.edit', $course->id) }}" class="flex items-center">
+                    <span class=" px-0.5 py-0.5 text-sm font-normal rounded-sm bg-green-500/70">
+                        <x-heroicon-s-check class="w-4 h-4 text-white"/>
+                    </span>
+                    <span class="ml-2 font-normal text-gray-500 hover:text-darkgreen">Overview</span>
                 </a>
     
                 <div>
-                    <span class="px-1.5 py-0.5 text-white rounded-md bg-darkgreen text-sm font-bold">2</span>
+                    <span class="px-1.5 py-0.5 text-white rounded-md bg-darkgreen text-xs font-bold">2</span>
                     <span class="ml-2 font-semibold text-darkgreen">Content</span>
                 </div>
             </nav>
             <section class="mt-8">
                 <div class="grid grid-cols-6 gap-6">
                     <div class="col-span-2">
-                        <div class="bg-white rounded-md">
-                            <header class="flex justify-between px-4 py-4">
-                                <h3 class="font-bold">Modules</h3>
-                                <div>
-                                    <button x-data x-on:click="$dispatch('openmodal-module-create')" type="button"
-                                        class="p-1 text-sm rounded-md bg-darkgreen hover:bg-darkgreen">
-                                        <x-heroicon-s-plus class="w-4 h-4 text-white" />
-                                    </button>
-                                </div>
-                            </header>
-                            <div x-data="{ module_id: @entangle('module_id') }" class="px-4 py-4">
+                        <div class="bg-white rounded-lg">
+                            <!-- List of Modules -->
+                            <div x-data="{ module_id: @entangle('module_id') }" class="relative z-20 px-6 py-6">
+
                                 @if(count($modules))
-                                <div wire:sortable 
+                                <section class="relative">
+
+                                    <div class="absolute border-r-2 border-gray-300 -z-1 top-5 bottom-5 left-1/2"></div>
+                                    
+                                    <div wire:sortable 
                                     wire:end.stop="reorderTable($event.target.sortable.toArray())" 
-                                    class="space-y-2">
+                                    class="relative space-y-5">
                                     @foreach($modules as $module)
                                     <div
                                         wire:sortable.item="{{ $module->id }}"
@@ -71,7 +58,7 @@
                                         wire:key="module-{{ $module->id  . '_' . time() }}"
                                         wire:click="selectModule({{ $module->id }})"
                                         :class="module_id == {{ $module->id }} ? 'border-2 border-orange-400 bg-orange-50' : ''"
-                                        class="px-2 py-2 border rounded-md cursor-pointer hover:bg-gray-50">
+                                        class="px-2 py-2 bg-white border rounded-md cursor-pointer hover:bg-gray-50">
                                         <div 
                                             class="flex items-center justify-between">
                                             <div class="flex items-center">
@@ -95,6 +82,17 @@
                                     </div>
                                     @endforeach
                                 </div>
+                                </section>
+
+                                <div class="flex flex-col mt-10 space-y-4">
+                                    <button x-data x-on:click="$dispatch('openmodal-module-create')" 
+                                    type="button" class="px-6 py-2 duration-300 ease-in-out bg-white border-2 rounded-md text-darkgreen border-darkgreen hover:bg-darkgreen hover:text-white">
+                                        <span>Add New Module</span>
+                                    </button>
+                                    <button type="button" class="btn-primary">
+                                        <span>Save & Exit</span>
+                                    </button>
+                                </div>
                                 @else
                                 <div class="bg-gray-100">
                                     <button x-data x-on:click="$dispatch('openmodal-module-create')" type="button"
@@ -112,10 +110,13 @@
                         </div>
                     </div>
                     <div class="col-span-4">
+
+                        <!-- Select Module and it's Contents -->
+                        
                         @if ($module_id)
                             <div class="bg-white border rounded-md">
                                 <header class="p-4">
-                                    <h2 class="font-bold text-darkgreen">{{ $selected_module->title }}</h2>
+                                    <h2 class="text-xl font-bold text-darkgreen">{{ $selected_module->title }}</h2>
                                 </header>
                                 <div wire:sortable 
                                      wire:end.stop="reorderModuleItems($event.target.sortable.toArray())"  
@@ -154,7 +155,7 @@
                                         </div>
                                     </div>
                                     @endforeach
-                                    @include('livewire.tenant.courses.partials.add_card')
+                                    @include('livewire.courses.partials.add_card')
                                 </div>
                             </div>
                         @else

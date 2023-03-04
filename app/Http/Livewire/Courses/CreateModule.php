@@ -33,7 +33,7 @@ class CreateModule extends Component implements HasForms
             Grid::make(5)
             ->schema([
                 TextInput::make('title')->columnSpan('full'),
-                Textarea::make('description')->columnSpan('full')
+                //Textarea::make('description')->columnSpan('full')
             ])
         ];
     }

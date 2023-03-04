@@ -13,7 +13,15 @@
 }
 
 .btn-primary{
-    @apply  px-6 py-3 text-white rounded-md bg-primary ;
+    @apply  px-6 py-3 text-white rounded-md bg-primary hover:bg-darkgreen/90 ;
+}
+
+.btn-sm{
+    @apply px-4 py-1.5;
+}
+
+.btn-light{
+    @apply px-4 text-gray-700 border border-gray-300 py-1.5 rounded-md;
 }
 
 .max-w-sidebar{
@@ -81,3 +89,7 @@ Default
     vertical-align: top;
     display: table-cell;
   }
+
+.modal .filament-forms-field-wrapper-label span{
+    @apply text-base text-darkgreen;
+}
