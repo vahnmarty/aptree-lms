@@ -4,9 +4,8 @@
     <div class="flex items-center justify-between pt-4 mt-8 border-t">
         <p class="text-xl font-bold text-darkgreen">Add Content</p>
         <div class="flex gap-2">
-            <button type="button" class="btn-default">Refresh</button>
-            <button type="button" class="btn-default">Cancel</button>
-            <button type="submit" class="btn-primary">Save</button>
+            <button type="button" class="btn-light">Cancel</button>
+            <button type="submit" class="btn-primary btn-sm">Save</button>
         </div>
     </div>
 </form>

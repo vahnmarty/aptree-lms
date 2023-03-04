@@ -15,6 +15,7 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Components\Fieldset;
 use Filament\Forms\Components\Textarea;
+use App\Forms\Components\SimpleFieldset;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\RichEditor;
@@ -67,7 +68,8 @@ class ContentEditor extends Component implements HasForms
     {
         if($this->layout == ContentLayout::LeftImageRightText)
         {
-            return Fieldset::make('content')
+            return SimpleFieldset::make('content')
+                ->columns(2)
                 ->label('Image & Text')
                 ->schema([
                     $this->getFieldFileUpload(),
@@ -77,7 +79,8 @@ class ContentEditor extends Component implements HasForms
 
         if($this->layout == ContentLayout::LeftTextRightImage)
         {
-            return Fieldset::make('content')
+            return SimpleFieldset::make('content')
+                ->columns(2)
                 ->label('Text & Image')
                 ->schema([
                     Textarea::make('content')->placeholder('Enter description here')->required(),
@@ -87,7 +90,8 @@ class ContentEditor extends Component implements HasForms
 
         if($this->layout == ContentLayout::TextOnly)
         {
-            return Fieldset::make('content')
+            return SimpleFieldset::make('content')
+                ->columns(2)
                 ->label('Text Only')
                 ->schema([
                     Textarea::make('content')->placeholder('Enter description here')->columnSpan('full')->required(),
@@ -96,7 +100,7 @@ class ContentEditor extends Component implements HasForms
 
         if($this->layout == ContentLayout::ImageOnly)
         {
-            return Fieldset::make('image')
+            return SimpleFieldset::make('image')
                 ->label('Image Only')
                 ->schema([
                     $this->getFieldFileUpload()->columnSpan('full')
@@ -106,7 +110,7 @@ class ContentEditor extends Component implements HasForms
                 ]);
         }
 
-        return Fieldset::make('default');
+        return SimpleFieldset::make('default');
     }
 
     public function getFieldFileUpload()
