@@ -1,6 +1,6 @@
 @section('header')
     <header class="flex justify-between px-8 py-6">
-        <h1 class="text-4xl font-bold leading-7 text-emerald-900 sm:leading-9">Course Library</h1>
+        <h1 class="text-4xl font-bold leading-7 text-darkgreen sm:leading-9">Course Library</h1>
         <div>
             @if(auth()->user()->isAdmin())
             <a href="{{ route('courses.create') }}" type="button" class="inline-flex items-center w-full btn-primary">
@@ -98,7 +98,7 @@
 
         </section>
 
-        <section class="mt-8 text-emerald-900">
+        <section class="mt-8 text-darkgreen">
             <div class="grid grid-cols-3 gap-6">
                 @foreach($courses as $course)
                 <div class="p-4 bg-white border rounded-md shadow-md">

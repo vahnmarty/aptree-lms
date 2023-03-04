@@ -1,6 +1,6 @@
 @section('header')
     <header class="flex justify-between px-8 py-6">
-        <h1 class="text-4xl font-bold leading-7 text-emerald-900 sm:leading-9">Billing</h1>
+        <h1 class="text-4xl font-bold leading-7 text-darkgreen sm:leading-9">Billing</h1>
         <div class="flex gap-6">
             
         </div>

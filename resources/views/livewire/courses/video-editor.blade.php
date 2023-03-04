@@ -77,11 +77,11 @@
                 
                 <section x-show="uploading" x-cloak class="mt-2">
                     <div class="flex justify-between mb-1">
-                        <span class="text-xs font-medium text-emerald-700 dark:text-white">Uploading</span>
-                        <span class="text-xs font-medium text-emerald-700 dark:text-white"><span x-text="progress"></span>%</span>
+                        <span class="text-xs font-medium text-darkgreen dark:text-white">Uploading</span>
+                        <span class="text-xs font-medium text-darkgreen dark:text-white"><span x-text="progress"></span>%</span>
                     </div>
                     <div class="w-full bg-gray-300 rounded-full h-1.5 dark:bg-gray-700">
-                        <div class="h-1.5 rounded-full bg-emerald-600" x-bind:style="'width: ' + progress + '%'"></div>
+                        <div class="h-1.5 rounded-full bg-darkgreen" x-bind:style="'width: ' + progress + '%'"></div>
                     </div>
                 </section>
   
@@ -105,7 +105,7 @@
     </div>
 
     <div class="flex items-center justify-between pt-4 mt-8 border-t">
-        <p class="text-xl font-bold text-emerald-900">Add Video</p>
+        <p class="text-xl font-bold text-darkgreen">Add Video</p>
         <div class="flex gap-2">
             <button x-data x-on:click="$dispatch('closemodal-video')" type="button" class="btn-default">Cancel</button>
             @if($action == \App\Enums\ActionType::Update)

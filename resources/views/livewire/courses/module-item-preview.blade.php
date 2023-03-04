@@ -68,7 +68,7 @@
                                                     <p>{{ $option->answer }}</p>
                                                     <div>
                                                         <x-heroicon-s-check-circle
-                                                            class="w-6 h-6 text-emerald-600" />
+                                                            class="w-6 h-6 text-darkgreen" />
                                                     </div>
                                                 </div>
                                                 @else
@@ -86,7 +86,7 @@
                                                     <p>{{ $option->answer }}</p>
                                                     <div>
                                                         <x-heroicon-s-check-circle
-                                                            class="w-6 h-6 text-emerald-600" />
+                                                            class="w-6 h-6 text-darkgreen" />
                                                     </div>
                                                 </div>
                                                 @else

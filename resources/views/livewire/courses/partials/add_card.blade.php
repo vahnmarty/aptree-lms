@@ -48,7 +48,7 @@
                 <x-slot name="button">
                     <button @click="open = !open"
                         class="w-10 h-10 px-2 py-2 bg-gray-200 rounded-md hover:bg-gray-300">
-                        <span class="font-bold group text-emerald-700">A</span>
+                        <span class="font-bold group text-darkgreen">A</span>
                     </button>
                 </x-slot>
                 <div class="relative px-3 py-3 bg-gray-300 rounded-md shadow-xs">
@@ -94,7 +94,7 @@
             <x-dropup>
                 <x-slot name="button">
                     <button @click="open = !open"
-                        class="w-10 h-10 px-2 py-2 bg-gray-200 rounded-md text-emerald-700 hover:bg-gray-300">
+                        class="w-10 h-10 px-2 py-2 bg-gray-200 rounded-md text-darkgreen hover:bg-gray-300">
                         <x-heroicon-s-video-camera />
                     </button>
                 </x-slot>
@@ -118,7 +118,7 @@
             <x-dropup>
                 <x-slot name="button">
                     <button @click="open = !open"
-                        class="w-10 h-10 px-2 py-2 bg-gray-200 rounded-md text-emerald-700 hover:bg-gray-300">
+                        class="w-10 h-10 px-2 py-2 bg-gray-200 rounded-md text-darkgreen hover:bg-gray-300">
                         <x-heroicon-o-document-text />
                     </button>
                 </x-slot>
@@ -136,7 +136,7 @@
             <x-dropup>
                 <x-slot name="button">
                     <button @click="open = !open"
-                        class="w-10 h-10 px-2 py-2 bg-gray-200 rounded-md text-emerald-700 hover:bg-gray-300">
+                        class="w-10 h-10 px-2 py-2 bg-gray-200 rounded-md text-darkgreen hover:bg-gray-300">
                         <x-heroicon-s-question-mark-circle />
                     </button>
                 </x-slot>

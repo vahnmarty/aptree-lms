@@ -2,7 +2,7 @@
 
     <header class="flex justify-between px-8 py-6 bg-white">
         <div>
-            <h1 class="text-3xl font-bold leading-7 text-emerald-900 sm:leading-9">Invitations</h1>
+            <h1 class="text-3xl font-bold leading-7 text-darkgreen sm:leading-9">Invitations</h1>
             <p>{{ $team->name }}</p>
         </div>
         <div>

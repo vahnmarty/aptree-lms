@@ -9,7 +9,7 @@
                             <x-heroicon-s-academic-cap class="w-10 h-10 text-gray-600"/>
                         </div>
         
-                        <h1 class="mt-8 text-3xl font-bold text-emerald-800">{{ $course->title }}</h1>
+                        <h1 class="mt-8 text-3xl font-bold text-darkgreen">{{ $course->title }}</h1>
                         <div class="mt-4">{!! $course->description !!}</div>
                         <div class="flex gap-3 mt-8">
                             <div class="flex items-center gap-1">
@@ -24,7 +24,7 @@
                     </div>
                     <div class="flex flex-col items-center self-center justify-center">
                         <button type="button" wire:click="start" class="duration-300 ease-in-out scale-90 hover:scale-100">
-                            <x-heroicon-s-play class="w-32 h-32 text-emerald-800"/>
+                            <x-heroicon-s-play class="w-32 h-32 text-darkgreen"/>
                         </button>
                         @if($enrollment_record)
                             @if($enrollment_record->isComplete())

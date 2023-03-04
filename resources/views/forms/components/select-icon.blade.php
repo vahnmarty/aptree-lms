@@ -24,8 +24,8 @@
         <div class="relative h-10 px-2 pt-2 bg-white border border-gray-300 rounded-md">
             <div class="flex justify-center">
                 <div class="-ml-5">
-                    <x-heroicon-s-lightning-bolt class="w-6 h-6 text-emerald-900" x-show="state == 'lightning'"/>
-                    <x-heroicon-s-academic-cap class="w-6 h-6 text-emerald-900" x-show="state == 'education'"/>
+                    <x-heroicon-s-lightning-bolt class="w-6 h-6 text-darkgreen" x-show="state == 'lightning'"/>
+                    <x-heroicon-s-academic-cap class="w-6 h-6 text-darkgreen" x-show="state == 'education'"/>
                 </div>
             </div>
             <div class="absolute top-2 right-2">
@@ -39,10 +39,10 @@
         <div x-cloak x-show="isOpen" class="absolute left-0 right-0 z-10 w-64 h-16 bg-white border border-gray-300 rounded-md shadow-sm">
             <div class="grid grid-cols-5 gap-6 p-3">
                 <button type="button" x-on:click="setState('lightning')">
-                    <x-heroicon-s-lightning-bolt class="w-6 h-6 text-gray-500 hover:text-emerald-900"/>
+                    <x-heroicon-s-lightning-bolt class="w-6 h-6 text-gray-500 hover:text-darkgreen"/>
                 </button>
                 <button type="button" x-on:click="setState('education')">
-                    <x-heroicon-s-academic-cap class="w-6 h-6 text-gray-500 hover:text-emerald-900"/>
+                    <x-heroicon-s-academic-cap class="w-6 h-6 text-gray-500 hover:text-darkgreen"/>
                 </button>
             </div>
         </div>

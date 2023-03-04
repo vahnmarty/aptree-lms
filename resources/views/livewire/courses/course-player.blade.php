@@ -35,7 +35,7 @@
                 </div>
                 <p class="mt-4 font-bold text-orange-500">{{ $course->title }}</p>
     
-                <h1 class="mt-4 text-3xl font-bold text-emerald-800">{{ $module->title }}</h1>
+                <h1 class="mt-4 text-3xl font-bold text-darkgreen">{{ $module->title }}</h1>
                 <p class="px-2 mt-4 text-sm text-center">
                     Congrats! You have completed the module.
                 </p>
@@ -119,7 +119,7 @@
                                                             <p>{{ $option->answer }}</p>
                                                             <div>
                                                                 <x-heroicon-s-check-circle
-                                                                    class="w-6 h-6 text-emerald-600" />
+                                                                    class="w-6 h-6 text-darkgreen" />
                                                             </div>
                                                         </div>
                                                         @else
@@ -137,7 +137,7 @@
                                                             <p>{{ $option->answer }}</p>
                                                             <div>
                                                                 <x-heroicon-s-check-circle
-                                                                    class="w-6 h-6 text-emerald-600" />
+                                                                    class="w-6 h-6 text-darkgreen" />
                                                             </div>
                                                         </div>
                                                         @else
@@ -186,7 +186,7 @@
                     </div>
                     <p class="mt-4 font-bold text-orange-500">{{ $course->title }}</p>
         
-                    <h1 class="mt-4 text-3xl font-bold text-emerald-800">{{ $module->title }}</h1>
+                    <h1 class="mt-4 text-3xl font-bold text-darkgreen">{{ $module->title }}</h1>
         
                     <p class="px-2 mt-4 text-sm text-center">Remember to do your best with each question. Points are awarded for first time correct answers!</p>
 
@@ -212,7 +212,7 @@
         <div class="max-w-4xl px-6 mx-auto">
             @if($next_module)
             <div class="flex items-center justify-between">
-                <h3 class="font-bold text-emerald-900">{{ $module->title }}</h3>
+                <h3 class="font-bold text-darkgreen">{{ $module->title }}</h3>
                 <div>
                     <button wire:click="nextModule" type="button" class="btn-primary">Proceed to Next Module</button>
                 </div>
@@ -230,7 +230,7 @@
             <div class="max-w-4xl px-6 mx-auto">
                 @if($content->type->value == \App\Enums\ModuleItemType::Question )
                 <div class="flex items-center justify-between">
-                    <h3 class="font-bold text-emerald-900">Question</h3>
+                    <h3 class="font-bold text-darkgreen">Question</h3>
                     <div>
                         @if($selected_answer)
                         <button wire:click="submitNext" type="button" class="btn-primary">Next</button>
@@ -239,7 +239,7 @@
                 </div>
                 @else
                 <div class="flex items-center justify-between">
-                    <h3 class="font-bold text-emerald-900">{{ $module->title }}</h3>
+                    <h3 class="font-bold text-darkgreen">{{ $module->title }}</h3>
                     <div>
                         <button wire:click="submitNext" type="button" class="btn-primary">Next</button>
                     </div>
@@ -249,7 +249,7 @@
             @else
             <div class="max-w-4xl px-6 mx-auto">
                 <div class="flex items-center justify-between">
-                    <h3 class="font-bold text-emerald-900">Course Overview</h3>
+                    <h3 class="font-bold text-darkgreen">Course Overview</h3>
                     <div>
                         <button wire:click="start" type="button" class="btn-primary">Start</button>
                     </div>

@@ -1,6 +1,6 @@
 @section('header')
     <header class="flex justify-between px-8 py-6">
-        <h1 class="text-4xl font-bold leading-7 text-emerald-900 sm:leading-9">Template Library</h1>
+        <h1 class="text-4xl font-bold leading-7 text-darkgreen sm:leading-9">Template Library</h1>
         <div>
             
         </div>
@@ -12,7 +12,7 @@
         <section>
 
             <div class="pb-6 border-b-2 border-gray-300">
-                <h3 class="text-xl font-bold text-emerald-800">Pathways</h3>
+                <h3 class="text-xl font-bold text-darkgreen">Pathways</h3>
                 <p class="mt-2">Series of courses.</p>
             </div>
 
@@ -23,7 +23,7 @@
                     <div>
                         <x-heroicon-s-template class="w-10 h-10 text-gray-400"/>
                     </div>
-                    <h3 class="mt-2 text-lg font-bold text-emerald-800">Speciality Tract</h3>
+                    <h3 class="mt-2 text-lg font-bold text-darkgreen">Speciality Tract</h3>
                     <div class="mt-2 text-gray-600">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                     </div>

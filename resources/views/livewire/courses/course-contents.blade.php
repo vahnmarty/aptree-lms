@@ -1,6 +1,6 @@
 <div>
     <header class="flex justify-between px-8 py-6 bg-white">
-        <h1 class="text-3xl font-bold leading-7 text-emerald-900 sm:leading-9">Add New Course</h1>
+        <h1 class="text-3xl font-bold leading-7 text-darkgreen sm:leading-9">Add New Course</h1>
         <div>
             @if($course->status == '0')
             <button wire:click="publish" type="button" class="btn-primary">Publish Now</button>
@@ -34,16 +34,16 @@
         </x-modal>
     
     
-        <div class="px-8 py-12 bg-gray-100 text-emerald-900">
+        <div class="px-8 py-12 bg-gray-100 text-darkgreen">
             <nav class="flex items-center space-x-4" aria-label="Tabs">
     
                 <div>
-                    <span class="rounded-sm bg-gray-300 px-1.5 py-0.5 text-sm font-bold text-emerald-900">1</span>
+                    <span class="rounded-sm bg-gray-300 px-1.5 py-0.5 text-sm font-bold text-darkgreen">1</span>
                     <span class="ml-2 font-bold text-gray-500">Overview</span>
                 </div>
                 <div>
-                    <span class="rounded-sm bg-emerald-900 px-1.5 py-0.5 text-sm font-bold text-white">2</span>
-                    <span class="ml-2 font-bold text-emerald-900">Content</span>
+                    <span class="rounded-sm bg-darkgreen px-1.5 py-0.5 text-sm font-bold text-white">2</span>
+                    <span class="ml-2 font-bold text-darkgreen">Content</span>
                 </div>
             </nav>
             <section class="mt-8">
@@ -54,7 +54,7 @@
                                 <h3 class="font-bold">Modules</h3>
                                 <div>
                                     <button x-data x-on:click="$dispatch('openmodal-module-create')" type="button"
-                                        class="p-1 text-sm rounded-md bg-emerald-600 hover:bg-emerald-800">
+                                        class="p-1 text-sm rounded-md bg-darkgreen hover:bg-darkgreen">
                                         <x-heroicon-s-plus class="w-4 h-4 text-white" />
                                     </button>
                                 </div>
@@ -115,7 +115,7 @@
                         @if ($module_id)
                             <div class="bg-white border rounded-md">
                                 <header class="p-4">
-                                    <h2 class="font-bold text-emerald-900">{{ $selected_module->title }}</h2>
+                                    <h2 class="font-bold text-darkgreen">{{ $selected_module->title }}</h2>
                                 </header>
                                 <div wire:sortable 
                                      wire:end.stop="reorderModuleItems($event.target.sortable.toArray())"  
