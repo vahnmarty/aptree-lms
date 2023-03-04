@@ -72,7 +72,7 @@ class ContentEditor extends Component implements HasForms
                 ->columns(2)
                 ->label('Image & Text')
                 ->schema([
-                    $this->getFieldFileUpload(),
+                    FileUpload::make('image')->disk('do')->directory('modules')->visibility('public')->preserveFilenames(),
                     Textarea::make('content')->placeholder('Enter description here')->required(),
                 ]);
         }
@@ -84,7 +84,7 @@ class ContentEditor extends Component implements HasForms
                 ->label('Text & Image')
                 ->schema([
                     Textarea::make('content')->placeholder('Enter description here')->required(),
-                    $this->getFieldFileUpload()
+                    FileUpload::make('image')->disk('do')->directory('modules')->visibility('public')->preserveFilenames(),
                 ]);
         }
 
@@ -117,7 +117,6 @@ class ContentEditor extends Component implements HasForms
     {
         return FileUpload::make('image')
                 ->image()
-                ->disk('do')
                 ->directory('modules')
                 ->visibility('public')
                 ->imagePreviewHeight('100')
@@ -194,8 +193,6 @@ class ContentEditor extends Component implements HasForms
 
     public function editContent($module_item_id)
     {
-        $this->resetExcept(['module_id', 'module', 'type']);
-
         $this->module_item_id = $module_item_id;
 
         $data = ModuleItem::find($module_item_id);
@@ -207,6 +204,7 @@ class ContentEditor extends Component implements HasForms
             'type' => $data->type->value,
             'layout' => $data->layout,
             'content' => $data->content,
+            'image' => $data->image
         ]);
 
         $this->getContentForm();

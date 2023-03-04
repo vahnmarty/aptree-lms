@@ -6,7 +6,7 @@
             <h1 class="text-lg font-bold text-darkgreen">Create Module</h1>
             <div>
                 <div class="flex gap-3">
-                    <button type="button" class="btn-light">Cancel</button>
+                    <button  type="button" class="btn-light" x-on:click="closeModal()">Cancel</button>
                     <button type="submit" class="btn-primary btn-sm">Save</button>
                 </div>
             </div>

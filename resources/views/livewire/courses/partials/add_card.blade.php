@@ -1,4 +1,4 @@
-<div class="p-2 border-2 rounded-md border-emerald-700">
+<div class="p-2 px-3 border-2 rounded-md border-emerald-700">
     <div class="flex items-center justify-between">
         <div class="flex items-center">
             <x-heroicon-s-plus class="w-5 h-5" />

@@ -1,6 +1,11 @@
-<div x-data="{ isOpen: false, }" 
+<div x-data="{ isOpen: false, 
+        closeModal(){
+            this.isOpen = false
+        } 
+    }" 
     x-on:openmodal-{{ $ref }}.window="isOpen = true; Livewire.emit('renderComponent')"
     x-on:closemodal-{{ $ref }}.window="isOpen = false" 
+    x-on:closeparentmodal.window="isOpen = false"
     x-show="isOpen" 
     x-cloak 
     class="relative z-30 modal"

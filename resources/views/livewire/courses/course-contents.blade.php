@@ -1,9 +1,9 @@
-<div class="bg-white">
-    <header class="flex justify-between px-8 py-6 bg-white">
+<div class="bg-gray-100">
+    <header class="flex justify-between px-16 py-6 bg-white">
         <h1 class="text-3xl font-bold leading-7 text-darkgreen sm:leading-9">Add New Course</h1>
     </header>
     
-    <div>
+    <div class="px-16">
     
         <x-modal-lg ref="module-create">
             <div class="pt-4">
@@ -22,7 +22,7 @@
         </x-modal>
     
     
-        <div class="px-8 py-12 bg-gray-100 text-darkgreen">
+        <div class="py-8 bg-gray-100 text-darkgreen">
             <nav class="flex items-center space-x-4" aria-label="Tabs">
                 <a href="{{ route('courses.edit', $course->id) }}" class="flex items-center">
                     <span class=" px-0.5 py-0.5 text-sm font-normal rounded-sm bg-green-500/70">
@@ -112,9 +112,8 @@
                     <div class="col-span-4">
 
                         <!-- Select Module and it's Contents -->
-                        
                         @if ($module_id)
-                            <div class="bg-white border rounded-md">
+                            <div class="p-4 bg-white border rounded-md">
                                 <header class="p-4">
                                     <h2 class="text-xl font-bold text-darkgreen">{{ $selected_module->title }}</h2>
                                 </header>
@@ -124,13 +123,12 @@
                                     @foreach($selected_module->items()->ordered()->get() as $card)
                                     <div 
                                         wire:sortable.item="{{ $card->id }}"
-                                        wire:sortable.handle
                                         wire:key="card-{{ $card->id  . '_' . time() }}"
-                                        class="px-4 py-2 mb-4 border-2 border-gray-300 rounded-md shadow-sm cursor-pointer">
+                                        class="px-4 py-2 mb-4 bg-white border-2 border-gray-300 rounded-md shadow-sm cursor-pointer">
                                         <div class="flex items-center justify-between gap-4">
-                                            <div class="flex col-span-3">
-                                                <div class="mr-4">
-                                                    @include('livewire.tenant.courses.partials.icon_card')
+                                            <div class="flex items-center col-span-3">
+                                                <div wire:sortable.handle class="mr-2 text-gray-500 hover:text-darkgreen">
+                                                    <x-heroicon-o-menu class="w-6 h-6 mr-2 " />
                                                 </div>
                                                 <div>
                                                     <p class="text-orange-500">{{ $card->type->key }}</p>
