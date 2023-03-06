@@ -2,14 +2,14 @@
 
 namespace App\Models;
 
+use App\Http\Traits\HasUuid;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\ModelTraits\TraitHasUuid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class EnrollmentModule extends Model
 {
     use HasFactory;
-    use TraitHasUuid;
+    use HasUuid;
 
     protected $guarded = [];
 

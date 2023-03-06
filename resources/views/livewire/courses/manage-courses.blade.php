@@ -1,5 +1,5 @@
-@section('header')
-    <header class="flex justify-between px-8 py-6">
+<div>
+    <header class="flex justify-between px-16 py-6">
         <h1 class="text-4xl font-bold leading-7 text-darkgreen sm:leading-9">Course Library</h1>
         <div>
             @if(auth()->user()->isAdmin())
@@ -15,10 +15,7 @@
             @endif
         </div>
     </header>
-@endsection
-
-<div>
-    <div class="px-8 py-12 bg-gray-100">
+    <div class="px-16 py-12 bg-gray-100">
         <section>
 
             <div class="flex justify-between pb-2 border-b border-gray-200">
@@ -42,12 +39,12 @@
                     <div>
                         <nav class="flex -mb-px space-x-4" aria-label="Tabs">
 
-                            <a href="?filter="
+                            <a href="?"
                                 class="@if ($filter == '') text-indigo-600  @else text-gray-500 @endif flex whitespace-nowrap px-1 py-2 text-sm font-medium"
                                 aria-current="page">
                                 View All
                                 <span
-                                    class="@if ($filter == '') text-indigo-600 bg-indigo-100 @else text-gray-900 bg-gray-200 @endif ml-1 hidden rounded-full py-0.5 px-2.5 text-xs font-medium md:inline-block">{{ count($courses) }}</span>
+                                    class="@if ($filter == '') text-indigo-600 bg-indigo-100 @else text-gray-900 bg-gray-200 @endif ml-1 hidden rounded-full py-0.5 px-2.5 text-xs font-medium md:inline-block">{{ $counts['total'] }}</span>
                             </a>
 
                             @if(Auth::user()->isAdmin())

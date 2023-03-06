@@ -3,14 +3,14 @@
 namespace App\Models;
 
 use App\Models\Course;
+use App\Http\Traits\HasUuid;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\ModelTraits\TraitHasUuid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Enrollment extends Model
 {
     use HasFactory;
-    use TraitHasUuid;
+    use HasUuid;
 
     public function course()
     {

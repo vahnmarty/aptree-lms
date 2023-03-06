@@ -9,7 +9,7 @@ use App\Enums\CourseStatus;
 
 class ManageCourses extends Component
 {
-    public $filter = 'published', $counts = [];
+    public $filter = '', $counts = [];
 
     public $courses = [];
 
@@ -24,6 +24,7 @@ class ManageCourses extends Component
     {
         $this->getCourses();
 
+        $this->counts['total'] = Course::count();
         $this->counts['published'] = Course::where('status', CourseStatus::Published)->count();
         $this->counts['draft'] = Course::where('status', CourseStatus::Draft)->count();
         $this->counts['deleted'] = Course::withTrashed()->whereNotNull('deleted_at')->count();

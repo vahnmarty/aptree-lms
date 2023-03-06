@@ -1,5 +1,5 @@
 <div>
-    <div class="px-8 py-12 bg-gray-100">
+    <div class="px-16 py-12 bg-gray-100">
 
         <div class="grid grid-cols-3 gap-8 mt-8">
             <section class="col-span-2">
@@ -10,7 +10,7 @@
                         </div>
         
                         <h1 class="mt-8 text-3xl font-bold text-darkgreen">{{ $course->title }}</h1>
-                        <div class="mt-4">{!! $course->description !!}</div>
+                        <div class="mt-4 font-light text-gray-600">{!! $course->description !!}</div>
                         <div class="flex gap-3 mt-8">
                             <div class="flex items-center gap-1">
                                 <x-heroicon-o-template class="w-4 h-4 text-gray-400"/>
@@ -23,17 +23,17 @@
                         </div>
                     </div>
                     <div class="flex flex-col items-center self-center justify-center">
-                        <button type="button" wire:click="start" class="duration-300 ease-in-out scale-90 hover:scale-100">
+                        <button type="button" wire:click="start" class="duration-300 ease-in-out scale-90 bg-white rounded-full hover:scale-100">
                             <x-heroicon-s-play class="w-32 h-32 text-darkgreen"/>
                         </button>
                         @if($enrollment_record)
                             @if($enrollment_record->isComplete())
-                            <p class="mt-4">Retake Course</p>
+                            <p class="mt-2">Retake Course</p>
                             @else
-                            <p class="mt-4">Continue</p>
+                            <p class="mt-2">Continue</p>
                             @endif
                         @else
-                        <p class="mt-4">Start learning</p>
+                        <p class="mt-2">Start learning</p>
                         @endif
                     </div>
                 </div>

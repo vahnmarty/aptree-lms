@@ -21,6 +21,7 @@ module.exports = {
             current: 'currentColor',
             black: colors.black,
             blue: colors.blue,
+            red: colors.red,
             green: colors.green,
             white: colors.white,
             gray: colors.gray,
