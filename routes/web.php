@@ -57,8 +57,8 @@ Route::group(['prefix' => 'courses', 'middleware' => ['auth']], function(){
 Route::group(['middleware' => ['auth']], function(){
 
     Route::get('template-library', TemplateLibrary::class)->name('template.library');
-    Route::get('teams', ManageTeams::class)->name('teams.index');
-    Route::get('teams/{id}/invitations', TeamInvitations::class)->name('teams.invitations');
+    Route::get('my-teams', ManageTeams::class)->name('teams.index');
+    Route::get('my-teams/{id}/invitations', TeamInvitations::class)->name('teams.invitations');
     Route::get('profile', UserProfile::class)->name('profile.index');
     Route::get('settings', TenantSettings::class)->name('settings');
     Route::get('users', TenantUsers::class)->name('users.index');

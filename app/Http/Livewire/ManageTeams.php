@@ -103,15 +103,14 @@ class ManageTeams extends Component implements HasForms, HasTable
                 ->visible(fn(): bool => auth()->user()->isAdmin())
                 ->form([
                     TextInput::make('name')->required(),
-                    Textarea::make('description'),
-                    Hidden::make('owner_id')
                 ])
                 ->mountUsing(fn (ComponentContainer $form, $record) => $form->fill([
                     'owner_id' => auth()->id(),
                 ]))
                 ->action(function(array $data){
-                    $team = Team::create($data);
-                    $team->users()->attach(auth()->id());
+                    Auth::user()->teams()->create([
+                        'name' => $data['name']
+                    ]);
 
                     $this->alert('success', 'Team created successfully!');
                 })

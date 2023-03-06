@@ -9,7 +9,10 @@
             </form>
         </section>
         <section>
+            
             <div class="flex items-center justify-end gap-6">
+
+                
                 <a href="{{ route('courses.index') }}" class="hidden text-sm text-darkgreen md:block">
                     My Courses
                 </a>
@@ -40,6 +43,36 @@
                         </button>
                     </x-slot>
                     <div class="w-64">
+                        <section>
+                             <!-- Team Management -->
+                             <div class="block px-4 py-2 text-xs text-gray-400">
+                                {{ __('Manage Team') }}
+                            </div>
+
+                            <!-- Team Settings -->
+                            @if(Auth::user()->currentTeam)
+                            <x-dropdown-link href="{{ route('teams.show', Auth::user()->currentTeam->id) }}">
+                                {{ __('Team Settings') }}
+                            </x-dropdown-link>
+                            @endif
+
+                            @can('create', Laravel\Jetstream\Jetstream::newTeamModel())
+                                <x-dropdown-link href="{{ route('teams.create') }}">
+                                    {{ __('Create New Team') }}
+                                </x-dropdown-link>
+                            @endcan
+
+                            <div class="border-t border-gray-200"></div>
+
+                            <!-- Team Switcher -->
+                            <div class="block px-4 py-2 text-xs text-gray-400">
+                                {{ __('Switch Teams') }}
+                            </div>
+
+                            @foreach (Auth::user()->allTeams() as $team)
+                                <x-switchable-team :team="$team" />
+                            @endforeach
+                        </section>
                         <form action="{{ route('logout') }}" method="POST">
                             @csrf
                             <button type="submit" class="flex items-center w-full px-4 py-2 text-sm text-gray-700 group hover:bg-gray-200">
