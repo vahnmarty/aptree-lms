@@ -2,19 +2,19 @@
 
 namespace App\Actions\Jetstream;
 
+use Closure;
 use App\Models\Team;
 use App\Models\User;
-use Closure;
-use Illuminate\Database\Query\Builder;
+use App\Mail\TeamInvitation;
+use Illuminate\Validation\Rule;
+use Laravel\Jetstream\Jetstream;
+use Laravel\Jetstream\Rules\Role;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\Rule;
-use Laravel\Jetstream\Contracts\InvitesTeamMembers;
 use Laravel\Jetstream\Events\InvitingTeamMember;
-use Laravel\Jetstream\Jetstream;
-use Laravel\Jetstream\Mail\TeamInvitation;
-use Laravel\Jetstream\Rules\Role;
+use Laravel\Jetstream\Contracts\InvitesTeamMembers;
 
 class InviteTeamMember implements InvitesTeamMembers
 {
@@ -34,7 +34,16 @@ class InviteTeamMember implements InvitesTeamMembers
             'role' => $role,
         ]);
 
-        Mail::to($email)->send(new TeamInvitation($invitation));
+        try {
+            Mail::to($email)->send(new TeamInvitation($invitation));
+        } catch (\Throwable $th) {
+
+            $invitation->delete();
+            
+            throw $th;
+        }
+
+        
     }
 
     /**

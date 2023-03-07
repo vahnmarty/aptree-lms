@@ -13,6 +13,7 @@ use Filament\Forms\Components\Hidden;
 use Filament\Forms\ComponentContainer;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Components\Textarea;
+use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Contracts\HasTable;
 use Filament\Forms\Components\TagsInput;
@@ -75,53 +76,40 @@ class ManageTeams extends Component implements HasForms, HasTable
     {
         return [
             ActionGroup::make([
-                CreateAction::make()
-                    ->label('Add Member')
-                    ->modalHeading('Add Member')
-                    ->form([
-                        TextInput::make('email')->email()->placeholder('Input a valid email address')
-                    ])
-                    ->action(function(Team $record, array $data){
-                        $email = $data['email'];
+                ViewAction::make()->url( fn(Team $record) => route('teams.show', $record->id) ),
+                // CreateAction::make()
+                //     ->label('Add Member')
+                //     ->modalHeading('Add Member')
+                //     ->form([
+                //         TextInput::make('email')->email()->placeholder('Input a valid email address')
+                //     ])
+                //     ->action(function(Team $record, array $data){
+                //         $email = $data['email'];
 
-                        $invitation = Invitation::firstOrCreate(
-                            [ 'team_id' => $record->id, 'email' => $email],
-                            [ 'token' => Str::random(40)]
-                        );
+                //         $invitation = Invitation::firstOrCreate(
+                //             [ 'team_id' => $record->id, 'email' => $email],
+                //             [ 'token' => Str::random(40)]
+                //         );
 
-                        InvitationCreated::dispatch($invitation);
-                    }),
+                //         InvitationCreated::dispatch($invitation);
+                //     }),
                     //->disableCreateAnother(),
-                Action::make('view_invitations')
-                    ->url( fn($record) => route('teams.invitations', $record->id) ),
+                // Action::make('view_invitations')
+                //     ->url( fn($record) => route('teams.invitations', $record->id) ),
             ])
             ->visible(fn(): bool => auth()->user()->isAdmin())
         ];
     }
 
-    protected function getTableHeaderActions() : array
-    {
-        return [
-            Action::make('create_team')
-                ->label('Create Team')
-                ->visible(fn(): bool => auth()->user()->isAdmin())
-                ->form([
-                    TextInput::make('name')->required(),
-                ])
-                ->mountUsing(fn (ComponentContainer $form, $record) => $form->fill([
-                    'owner_id' => auth()->id(),
-                ]))
-                ->action(function(array $data){
-                    Auth::user()->teams()->create([
-                        'name' => $data['name']
-                    ]);
-
-                    $this->alert('success', 'Team created successfully!');
-                })
-                ->color('primary')
-                ->button()
-        ];
-    }
+    // protected function getTableHeaderActions() : array
+    // {
+    //     // return [
+    //     //     Action::make('create_team')
+    //     //         ->label('Create Team')
+    //     //         ->color('primary')
+    //     //         ->button()
+    //     // ];
+    // }
 
     protected function isTablePaginationEnabled(): bool 
     {

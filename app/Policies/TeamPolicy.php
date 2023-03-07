@@ -23,6 +23,10 @@ class TeamPolicy
      */
     public function view(User $user, Team $team): bool
     {
+        if($user->isAdmin()){
+            return true;
+        }
+        
         return $user->belongsToTeam($team);
     }
 
@@ -39,6 +43,10 @@ class TeamPolicy
      */
     public function update(User $user, Team $team): bool
     {
+        if($user->isAdmin()){
+            return true;
+        }
+
         return $user->ownsTeam($team);
     }
 
@@ -47,6 +55,9 @@ class TeamPolicy
      */
     public function addTeamMember(User $user, Team $team): bool
     {
+        if($user->isAdmin()){
+            return true;
+        }
         return $user->ownsTeam($team);
     }
 
@@ -55,6 +66,9 @@ class TeamPolicy
      */
     public function updateTeamMember(User $user, Team $team): bool
     {
+        if($user->isAdmin()){
+            return true;
+        }
         return $user->ownsTeam($team);
     }
 
@@ -63,6 +77,10 @@ class TeamPolicy
      */
     public function removeTeamMember(User $user, Team $team): bool
     {
+        if($user->isAdmin()){
+            return true;
+        }
+        
         return $user->ownsTeam($team);
     }
 
