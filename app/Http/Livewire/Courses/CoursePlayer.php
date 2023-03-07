@@ -38,7 +38,7 @@ class CoursePlayer extends Component
 
     public function render()
     {
-        return view('livewire.courses.course-player')->layout('theme::layouts.slider');
+        return view('livewire.courses.course-player')->layout('layouts.slider');
     }
 
     public function mount($uuid)
@@ -93,6 +93,11 @@ class CoursePlayer extends Component
         $module = $enrollment_module->module;
 
         $firstEpisode = $module->items()->ordered()->first();
+        
+        if(!$firstEpisode){
+            #TODO
+            dd('This module has no episodes available');
+        }
 
         return $this->showNext($firstEpisode->id);
     }
@@ -126,7 +131,7 @@ class CoursePlayer extends Component
                 $this->next_module = $this->createNextModule($module_id);
             }
 
-            if(!$record->completed_at){
+            if(!$record?->completed_at){
                 $this->next_module = $this->createNextModule($module_id);
             }
         }

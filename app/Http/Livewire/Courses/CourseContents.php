@@ -127,4 +127,13 @@ class CourseContents extends Component
 
         $this->alert('success', 'Course has been published!');
     }
+
+    public function save()
+    {
+        // $this->confirm("Save changes?", [
+        //     'position' => 'center',
+        //     'showConfirmButton' => true,
+        //     'confirmButtonText' => 'Yes',
+        // ]);
+    }
 }

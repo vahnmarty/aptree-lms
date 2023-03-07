@@ -52,7 +52,7 @@
                 <section class="max-w-3xl px-4 mx-auto">
                     <div class="grid items-center grid-cols-2 gap-8">
                         <div class="p-4 bg-gray-300 rounded-lg shadow-sm border-md">
-                            <img src="{{ global_asset('img/question.jpg') }}" class="w-full h-auto" alt="">
+                            <img src="{{ asset('img/question.jpg') }}" class="w-full h-auto" alt="">
                         </div>
                         @if ($module->question)
                         <div>

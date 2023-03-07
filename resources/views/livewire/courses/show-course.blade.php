@@ -65,7 +65,7 @@
             <section>
                 <div class="border rounded-md bg-yellow-500/30">
                     <div class="px-4 py-8">
-                        <img src="{{ global_asset('img/badge.png') }}" class="w-auto h-32 mx-auto">
+                        <img src="{{ asset('img/badge.png') }}" class="w-auto h-32 mx-auto">
                     </div>
                     <div class="px-4 py-4 text-sm text-gray-700">
                         <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">

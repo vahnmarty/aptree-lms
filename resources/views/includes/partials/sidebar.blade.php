@@ -49,7 +49,7 @@
                     </x-slot>
                 </x-sidebar-item>
 
-                <x-sidebar-item label="Teams" link="{{ route('teams.index') }}" :active="request()->is('teams*') ">
+                <x-sidebar-item label="Teams" link="{{ route('teams.index') }}" :active="request()->is('my-teams*') ">
                     <x-slot name="icon">
                         <x-heroicon-s-user-group class="flex-shrink-0 w-6 h-6 ml-1 mr-4 text-gray-500"/>
                     </x-slot>

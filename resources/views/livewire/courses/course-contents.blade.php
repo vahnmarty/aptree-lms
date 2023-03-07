@@ -89,9 +89,9 @@
                                     type="button" class="px-6 py-2 duration-300 ease-in-out bg-white border-2 rounded-md text-darkgreen border-darkgreen hover:bg-darkgreen hover:text-white">
                                         <span>Add New Module</span>
                                     </button>
-                                    <button type="button" class="btn-primary">
+                                    <a href="{{ route('courses.show', $course->id) }}" class="block w-full text-center btn-primary">
                                         <span>Save & Exit</span>
-                                    </button>
+                                    </a>
                                 </div>
                                 @else
                                 <div class="bg-gray-100">

@@ -36,7 +36,11 @@ class ManageTeams extends Component implements HasForms, HasTable
 
     protected function getTableQuery()
     {
-        return Team::query();
+        if(Auth::user()->isAdmin()){
+            return Team::query();
+        }
+
+        return Auth::user()->ownedTeams->toQuery();
     } 
 
     protected function getTableColumns(): array 

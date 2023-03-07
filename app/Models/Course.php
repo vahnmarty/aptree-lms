@@ -53,6 +53,6 @@ class Course extends Model
             return Storage::disk('do')->url($this->image);
         }
 
-        return global_asset('img/hero.jpg');
+        return asset('img/hero.jpg');
     }
 }
