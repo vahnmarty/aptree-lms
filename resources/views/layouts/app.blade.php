@@ -29,6 +29,7 @@
     @stack('head-scripts')
 </head>
 <body class="bg-gray-100">
+    <x-banner />
 
     <div class="flex">
 

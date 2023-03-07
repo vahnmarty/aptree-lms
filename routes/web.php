@@ -18,8 +18,8 @@ use App\Http\Livewire\Courses\CreateCourse;
 use App\Http\Livewire\Courses\ManageCourses;
 use App\Http\Controllers\DashboardController;
 use App\Http\Livewire\Courses\CourseContents;
+use App\Http\Controllers\InvitationController;
 use App\Http\Livewire\Courses\ModuleItemPreview;
-use App\Http\Controllers\Tenant\InvitationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -67,6 +67,12 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('support', SupportPage::class)->name('support');
 });
 
-Route::get('invitation/{token}', [InvitationController::class, 'accept'])->name('invitation.accept');
-Route::get('invitation/registration/{token}', [InvitationController::class, 'register'])->name('invitation.register');
-Route::post('invitation/registration', [InvitationController::class, 'store'])->name('invitation.store');
+// Route::get('invitation/{token}', [InvitationController::class, 'accept'])->name('invitation.accept');
+// Route::get('invitation/registration/{token}', [InvitationController::class, 'register'])->name('invitation.register');
+// Route::post('invitation/registration', [InvitationController::class, 'store'])->name('invitation.store');
+
+Route::get('/team-invitations/{invitation}', [InvitationController::class, 'accept'])
+                            ->middleware(['signed'])
+                            ->name('team-invitations.accept');
+
+Route::post('/team-invitations/{invitationId}/register', [InvitationController::class, 'register'])->name('team-invitations.register');
