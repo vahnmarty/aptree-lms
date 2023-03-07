@@ -44,6 +44,12 @@
                     </x-slot>
                     <div class="w-64">
                         <section>
+
+                            <!-- Profile -->
+                            <x-dropdown-link href="{{ route('profile.show') }}">
+                                {{ __('Profile Settings') }}
+                            </x-dropdown-link>
+                            
                              <!-- Team Management -->
                              <div class="block px-4 py-2 text-xs text-gray-400">
                                 {{ __('Manage Team') }}

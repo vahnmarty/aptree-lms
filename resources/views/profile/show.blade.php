@@ -1,12 +1,12 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Profile') }}
-        </h2>
-    </x-slot>
-
+    <header class="flex justify-between px-8 py-6 pl-16 bg-white">
+        <h1 class="text-4xl font-bold leading-7 text-darkgreen sm:leading-9">Profile Settings</h1>
+        <div>
+            
+        </div>
+    </header>
     <div>
-        <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
+        <div class="px-8 py-12 pl-16 space-y-8 bg-gray-100">
             @if (Laravel\Fortify\Features::canUpdateProfileInformation())
                 @livewire('profile.update-profile-information-form')
 
