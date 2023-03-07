@@ -10,7 +10,7 @@ use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\CheckboxList;
 use Filament\Forms\Concerns\InteractsWithForms;
 
-class TenantSettings extends Component implements HasForms
+class Settings extends Component implements HasForms
 {
     use InteractsWithForms;
 
@@ -18,7 +18,7 @@ class TenantSettings extends Component implements HasForms
     
     public function render()
     {
-        return view('livewire.tenant-settings');
+        return view('livewire.settings');
     }
 
     protected function getLogoFormSchema(): array
@@ -33,9 +33,7 @@ class TenantSettings extends Component implements HasForms
         return [
             CheckboxList::make('courses')
                 ->options(function(){
-                    return tenancy()->central(function(){
-                        return CourseCategory::get()->pluck('name', 'id');
-                    });
+                    return CourseCategory::get()->pluck('name', 'id');
                 })
                 ->columns(3)
         ];

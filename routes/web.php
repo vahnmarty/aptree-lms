@@ -1,13 +1,13 @@
 <?php
 
+use App\Http\Livewire\Settings;
 use App\Http\Livewire\Invitations;
 use App\Http\Livewire\ManageTeams;
-use App\Http\Livewire\SupportPage;
 
+use App\Http\Livewire\SupportPage;
 use App\Http\Livewire\TenantUsers;
 use App\Http\Livewire\UserProfile;
 use App\Http\Livewire\ManageBilling;
-use App\Http\Livewire\TenantSettings;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\TeamInvitations;
 use App\Http\Livewire\TemplateLibrary;
@@ -60,7 +60,7 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('my-teams', ManageTeams::class)->name('teams.index');
     Route::get('my-teams/{id}/invitations', TeamInvitations::class)->name('teams.invitations');
     Route::get('profile', UserProfile::class)->name('profile.index');
-    Route::get('settings', TenantSettings::class)->name('settings');
+    Route::get('settings', Settings::class)->name('settings');
     Route::get('users', TenantUsers::class)->name('users.index');
     Route::get('billing', ManageBilling::class)->name('billing.index');
     Route::get('invitations', Invitations::class)->name('invitations.index');
