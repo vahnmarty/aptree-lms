@@ -32,6 +32,6 @@ if (! function_exists('site_logo')) {
            return Storage::disk('do')->url($file);
         }
 
-        return asset($file);
+        return asset('storage/' . $file);
     }
 }
