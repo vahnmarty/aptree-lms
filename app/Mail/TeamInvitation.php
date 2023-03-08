@@ -50,8 +50,8 @@ class TeamInvitation extends Mailable
                         'team.name' => $invitation->team->name,
                         'person.name' => $person_name,
                         'person.role' => Str::title($invitation->role),
-                        'tenant.name' => config('app.name'),
-                        'account.name' => config('app.name'),
+                        'tenant.name' => settings('name'),
+                        'account.name' => settings('name'),
                         'support_email' => config('mail.from.address'),
                         'invitation_link' => URL::signedRoute('team-invitations.accept', [ 'invitation' => $this->invitation])
                     ])

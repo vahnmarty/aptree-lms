@@ -60,6 +60,10 @@
     @apply inline-flex;
 }
 
+.settings-page .filament-forms-field-wrapper-label{
+    @apply hidden;
+}
+
 /*
 Default
 .choices__inner {

@@ -12,14 +12,18 @@
     <div class="px-16 py-12 bg-gray-100">
         <div class="grid grid-cols-3 gap-8">
             <section>
-                <h3 class="text-xl font-bold text-emerald-800">Logo</h3>
-                <p class="text-gray-700">Upload your institution / company logo</p>
+                <form wire:submit.prevent="updateLogo">
+                    <h3 class="text-xl font-bold text-emerald-800">Logo</h3>
+                    <p class="text-gray-700">Upload your institution / company logo</p>
 
-                <div class="p-6 mt-8 bg-white border rounded-md">
-                    <div class="p-8 border border-gray-300 border-dashed">
-                        {{ $this->logoForm }}
+                    <div class="p-6 mt-8 bg-white border rounded-md">
+                        <div class="p-8 border border-gray-300 border-dashed">
+                            {{ $this->logoForm }}
+                        </div>
+
+                        <button type="submit" class="mt-4 btn-primary btn-sm">Save</button>
                     </div>
-                </div>
+                </form>
             </section>
 
             <section class="col-span-3">
@@ -44,16 +48,8 @@
 
             <section class="col-span-3">
                 @foreach($settings as $config)
-                <div class="grid grid-cols-6 gap-8 p-4 border-b">
-                    <div class="col-span-2">
-                        <h4 class="font-bold text-darkgreen">{{ $config->key }}</h4>
-                        @if($config->description)
-                        <div class="text-sm text-gray-700">{!! $config->description !!}</div>
-                        @endif
-                    </div>
-                    <div class="col-span-4">
-                        <input type="text" class="w-full border border-gray-300 rounded-md" value="{{ $config->value }}" >
-                    </div>
+                <div class="py-6 border-b">
+                    @livewire('settings.setting-item', ['id' => $config->id] , key('setting-' . $config->id . '-' . time()))
                 </div>
                 @endforeach
             </section>

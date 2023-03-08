@@ -47,21 +47,21 @@ class SettingsTableSeeder extends Seeder
 
         Settings::firstOrCreate(['key' => 'stripe_key'],
         [
-            'description' => '<p><a href="https://stripe.com/">stripe.com</a> API KEY.</p>',
+            'description' => '<p><a class="font-bold text-blue-600" target="_blank href="https://stripe.com/">stripe.com</a> API KEY.</p>',
             'value' => '',
             'form_type' => FormType::Textbox
         ]);
 
         Settings::firstOrCreate(['key' => 'stripe_secret'],
         [
-            'description' => '<p><a href="https://stripe.com/">stripe.com</a> Secret KEY.</p>',
+            'description' => '<p><a class="font-bold text-blue-600" target="_blank href="https://stripe.com/">stripe.com</a> Secret KEY.</p>',
             'value' => '',
             'form_type' => FormType::Textarea
         ]);
 
         Settings::firstOrCreate(['key' => 'stripe_secret'],
         [
-            'description' => '<p><a href="https://stripe.com/">stripe.com</a> Secret Webhook KEY.</p>',
+            'description' => '<p><a class="font-bold text-blue-600" target="_blank href="https://stripe.com/">stripe.com</a> Secret Webhook KEY.</p>',
             'value' => '',
             'form_type' => FormType::Textarea
         ]);

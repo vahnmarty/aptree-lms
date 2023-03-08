@@ -5,27 +5,45 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\Settings;
 use App\Models\CourseCategory;
+use Livewire\TemporaryUploadedFile;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\CheckboxList;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Filament\Forms\Concerns\InteractsWithForms;
 
 class ManageSettings extends Component implements HasForms
 {
     use InteractsWithForms;
+    use LivewireAlert;
 
     public $image;
+
+    public $full_access;
     
     public function render()
     {
         return view('livewire.manage-settings', ['settings' => Settings::get()]);
     }
 
+    public function mount()
+    {
+        $this->logoForm->fill([
+            'image' => settings('logo')
+        ]);
+    }
+
     protected function getLogoFormSchema(): array
     {
         return [
-            FileUpload::make('image')->required(),
+            FileUpload::make('image')
+                ->disk('do')
+                ->required()
+                ->directory('settings')
+                ->getUploadedFileNameForStorageUsing(function (TemporaryUploadedFile $file): string {
+                    return (string) str($file->getClientOriginalName())->prepend('logo-');
+                }),
         ];
     }
 
@@ -61,4 +79,15 @@ class ManageSettings extends Component implements HasForms
                 ->schema($this->getPermissionFormSchema()),
         ];
     } 
+
+    public function updateLogo()
+    {
+        $data = $this->logoForm->getState();
+
+        update_settings('logo', $data['image']);
+
+        $this->alert('success', 'Logo has been updated successfully!');
+
+        return redirect('/settings');
+    }
 }

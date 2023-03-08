@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
 <head>
-    <title>{{ config('app.name') }} | @yield('title', 'Home')</title>
+    <title>{{ settings('name') }} | @yield('title', 'Home')</title>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge"> <!-- † -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -35,7 +35,7 @@
 
         @include('includes.partials.sidebar')
 
-        <div class="flex-1">
+        <div class="flex-1 max-h-screen overflow-auto">
             @include('includes.partials.header')
             <div class="bg-white md:px-8">
                 @yield('header')
