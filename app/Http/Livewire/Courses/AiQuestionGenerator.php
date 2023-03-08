@@ -32,10 +32,6 @@ class AiQuestionGenerator extends Component implements HasForms
     public function mount($moduleId)
     {
         $this->module_id = $moduleId;
-
-        $this->form->fill([
-            'prompt' => "Laravel is a web application framework with expressive, elegant syntax. We’ve already laid the foundation — freeing you to create without sweating the small things."
-        ]);
     }
 
     protected function getFormSchema()
