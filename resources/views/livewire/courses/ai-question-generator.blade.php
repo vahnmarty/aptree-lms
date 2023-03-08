@@ -1,8 +1,5 @@
 <form action="" wire:submit.prevent="submit">
-    {{ $this->form }}
-
     @if(  count($results) )
-    <h2>Results</h2>
     <div class="pt-4 space-y-4 border-t">
         @foreach($results as $result)
         <div class="p-4 border border-gray-300 rounded-md">
@@ -10,21 +7,27 @@
                 <div class="flex-1">
                     <div>{{ $result['question'] }}</div>
                     <div class="flex flex-col mt-4 space-y-4">
-                        @foreach($result['choices'] as $choice)
+                        @foreach($result['choices'] as $index => $choice)
                         <label class="flex items-center gap-2">
+                            @if($index == 0)
+                            <input type="radio" value="{{ $choice }}" checked>
+                            @else
                             <input type="radio" value="{{ $choice }}">
+                            @endif
                             <span>{{ $choice }}</span>
                         </label>
                         @endforeach
                     </div>
                 </div>
                 <div>
-                    <button type="button" class="btn-primary">Insert</button>
+                    <button type="button" class="btn-primary">Insert & Edit</button>
                 </div>
             </div>
         </div>
         @endforeach
     </div>
+    @else
+    {{ $this->form }}
     @endif
 
     <div class="py-4 pt-8 mt-16 border-t">
