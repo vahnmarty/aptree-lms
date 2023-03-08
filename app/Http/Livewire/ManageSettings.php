@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
+use App\Models\Settings;
 use App\Models\CourseCategory;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Contracts\HasForms;
@@ -10,7 +11,7 @@ use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\CheckboxList;
 use Filament\Forms\Concerns\InteractsWithForms;
 
-class Settings extends Component implements HasForms
+class ManageSettings extends Component implements HasForms
 {
     use InteractsWithForms;
 
@@ -18,7 +19,7 @@ class Settings extends Component implements HasForms
     
     public function render()
     {
-        return view('livewire.settings');
+        return view('livewire.manage-settings', ['settings' => Settings::get()]);
     }
 
     protected function getLogoFormSchema(): array

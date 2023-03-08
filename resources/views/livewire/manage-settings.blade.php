@@ -39,6 +39,24 @@
                     {{ $this->permissionForm }}
                 </div>
             </section>
+
+            <div class="col-span-3 mb-8 border-t border-dashed"></div>
+
+            <section class="col-span-3">
+                @foreach($settings as $config)
+                <div class="grid grid-cols-6 gap-8 p-4 border-b">
+                    <div class="col-span-2">
+                        <h4 class="font-bold text-darkgreen">{{ $config->key }}</h4>
+                        @if($config->description)
+                        <div class="text-sm text-gray-700">{!! $config->description !!}</div>
+                        @endif
+                    </div>
+                    <div class="col-span-4">
+                        <input type="text" class="w-full border border-gray-300 rounded-md" value="{{ $config->value }}" >
+                    </div>
+                </div>
+                @endforeach
+            </section>
         </div>
     </div>
 </div>
