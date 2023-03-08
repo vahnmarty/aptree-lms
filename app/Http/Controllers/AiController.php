@@ -11,16 +11,13 @@ class AiController extends Controller
     {
         $file = public_path('gpt.log');
 
-        $array = explode("\n", file_get_contents('gpt.log'));
+        $content = file_get_contents('gpt.log');
 
-        dd($array);
-
-        $json = json_encode($file);
+        $json = json_encode($content);
 
         $decode = json_decode($json);
 
-        return $decode;
+        return json_decode(str_replace("\\\"", "\"", $decode), true);
 
-        return $json;
     }
 }

@@ -58,8 +58,15 @@ class AiQuestionGenerator extends Component implements HasForms
 
         $prompt = $data['prompt'];
 
-        $messages[] = ['role' => 'user', 
-            'content' => 'Write 10 possible questions, each question should have 4 choices and 1 correct answer from this article : "' . $prompt. '". \n Display the result as Json Format.'];
+        $messages[] = [
+            'role' => 'user', 
+            'content' => 'Write 10 possible questions, each question should have 4 choices and 1 correct answer from this article : "' . $prompt. '". \n Display the result as Json Format.'
+        ];
+
+        $messages[] = [
+            'role' => 'user',
+            'content' => 'Display the result as JSON Format, it should be group under the collection called "questions", Then each item should have a key called "question", "choices", and "answer"'
+        ];
 
         Log::channel('openai')->info(json_encode($messages));
 
@@ -68,12 +75,23 @@ class AiQuestionGenerator extends Component implements HasForms
             'messages' => $messages
         ]);
 
-        $text_result = $response['choices'][0]['message']['content'];
+        $content = $response['choices'][0]['message']['content'];
 
-        $json = json_encode($text_result);
+        $data = $this->parseResult ($content);
 
-        $this->results = $json;
+        $this->results = $data['questions'];
 
-        Log::channel('openai')->alert( json_encode($response));
+        //Log::channel('openai')->alert( json_encode($response));
+    }
+
+    public function parseResult($content)
+    {
+        $json = json_encode($content);
+
+        $decode = json_decode($json);
+
+        $data =  json_decode(str_replace("\\\"", "\"", $decode), true);
+
+        return $data;
     }
 }
