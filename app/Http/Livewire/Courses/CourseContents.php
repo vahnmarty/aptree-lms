@@ -100,6 +100,11 @@ class CourseContents extends Component
         $this->emit('createQuestion', $type);
     }
 
+    public function createAiQuestion()
+    {
+        $this->emit('createAiQuestion');
+    }
+
     public function reorderTable($data)
     {
         Module::setNewOrder($data);

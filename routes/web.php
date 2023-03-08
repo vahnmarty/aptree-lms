@@ -1,14 +1,15 @@
 <?php
 
-use App\Http\Livewire\ManageSettings;
 use App\Http\Livewire\Invitations;
 use App\Http\Livewire\ManageTeams;
-
 use App\Http\Livewire\SupportPage;
+
 use App\Http\Livewire\TenantUsers;
 use App\Http\Livewire\UserProfile;
 use App\Http\Livewire\ManageBilling;
+use App\Http\Livewire\ManageSettings;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AiController;
 use App\Http\Livewire\TeamInvitations;
 use App\Http\Livewire\TemplateLibrary;
 use App\Http\Livewire\Courses\EditCourse;
@@ -35,6 +36,8 @@ use App\Http\Livewire\Courses\ModuleItemPreview;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('chatgpt', [AiController::class, 'chatgpt']);
 
 Route::middleware([
     'auth:sanctum',
