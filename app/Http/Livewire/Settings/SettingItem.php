@@ -44,22 +44,22 @@ class SettingItem extends Component implements HasForms
 
         if($form_type == FormType::Textarea ){
             return [
-                Textarea::make('value')->label($this->setting->key)->helperText($this->setting->helper_text)
+                Textarea::make('value')->disableLabel()->helperText($this->setting->helper_text)
             ];
         }
         elseif($form_type == FormType::Colorpicker ){
             return [
-                ColorPicker::make('value')->label($this->setting->key)->helperText($this->setting->helper_text)
+                ColorPicker::make('value')->disableLabel()->helperText($this->setting->helper_text)
             ];
         }
         elseif($form_type == FormType::Fileupload ){
             return [
-                FileUpload::make('value')->label($this->setting->key)->helperText($this->setting->helper_text)
+                FileUpload::make('value')->disableLabel()->helperText($this->setting->helper_text)
             ];
         }
         else{
             return [
-                TextInput::make('value')->label($this->setting->key)->helperText($this->setting->helper_text)
+                TextInput::make('value')->disableLabel()->helperText($this->setting->helper_text)
             ];
         }
         
