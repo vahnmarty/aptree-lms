@@ -38,7 +38,6 @@ class ManageSettings extends Component implements HasForms
     {
         return [
             FileUpload::make('image')
-                ->disk('do')
                 ->required()
                 ->directory('settings')
                 ->getUploadedFileNameForStorageUsing(function (TemporaryUploadedFile $file): string {

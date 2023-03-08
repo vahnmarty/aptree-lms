@@ -149,8 +149,9 @@
                             <span>Multiple Choice</span>
                         </button>
                         <button type="button"
-                            disabled
-                            class="p-2 text-xs bg-white border rounded-md opacity-50 cursor-not-allowed hover:bg-emerald-50">
+                        x-on:click="hide()"
+                        wire:click="createQuestion(`{{ \App\Enums\QuestionType::Ai }}`)"
+                            class="p-2 text-xs bg-white border rounded-md hover:bg-emerald-50">
                             <span>AI Question Generator</span>
                         </button>
                         <button type="button"
