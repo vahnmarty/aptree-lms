@@ -26,7 +26,7 @@ if (! function_exists('site_logo')) {
     function site_logo() {
         $file = settings('logo');
 
-        return asset($file);
+        return asset('storage/'.$file);
 
         if (Storage::disk('do')->exists($file)) {
            return Storage::disk('do')->url($file);
