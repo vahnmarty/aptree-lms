@@ -23,7 +23,7 @@
         <div class="flex justify-start pl-3">
             <div class="flex items-center bg-transparent rounded-md">
                 <button x-on:click="$store.sidebarExpanded.toggle()" type="button">
-                    <img class="flex-shrink-0 w-auto h-8" src="{{ asset('img/logo.png') }}" alt="Company name">
+                    <img class="flex-shrink-0 w-auto h-8" src="{{ site_logo() }}" alt="{{ settings('name') }}">
                 </button>
             </div>
         </div>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Settings;
+use Illuminate\Support\Facades\Storage;
 
 if (! function_exists('settings')) {
     function settings($key) {
@@ -18,5 +19,17 @@ if (! function_exists('update_settings')) {
             $setting->value = $value;
             $setting->save();
         }
+    }
+}
+
+if (! function_exists('site_logo')) {
+    function site_logo() {
+        $file = settings('logo');
+
+        if (Storage::disk('do')->exists($file)) {
+           return Storage::disk('do')->url($file);
+        }
+
+        return asset($file);
     }
 }
