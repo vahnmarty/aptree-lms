@@ -20,7 +20,7 @@ class AiQuestionGenerator extends Component implements HasForms
 
     public $prompt;
 
-    public $results;
+    public $results = [];
 
     protected $listeners = ['createAiQuestion' => 'create'];
     
