@@ -16,6 +16,11 @@ class Question extends Model
         return $this->hasMany(Answer::class);
     }
 
+    public function randomAnswers()
+    {
+        return $this->hasMany(Answer::class)->inRandomOrder();
+    }
+
     public function getAnswerArray()
     {
         $array = [];

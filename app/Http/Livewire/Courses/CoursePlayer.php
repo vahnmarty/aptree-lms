@@ -48,20 +48,16 @@ class CoursePlayer extends Component
         $this->course = $this->enrollment->course;
 
         # Module URL
-        if($this->enrollment_module && $this->module_id)
-        {
+        if($this->enrollment_module && $this->module_id){
             $this->module = Module::find($this->module_id);
-            $this->contents = $this->module->items()->ordered()->get();
         }
         # Fresh start
         else{
             $this->module = $this->course->modules()->ordered()->first();
-
             $this->module_id = $this->module->id;
-
-            $this->contents = $this->module->items()->ordered()->get();
         }
-        
+
+        $this->contents = ModuleItem::with('question.randomAnswers')->where('module_id', $this->module_id)->ordered()->get();
     }
 
 
@@ -185,6 +181,16 @@ class CoursePlayer extends Component
         $this->episode = $record;
 
         $this->content = $record->moduleItem;
+
+        foreach($this->contents as $index => $content)
+        {
+            if($content['id'] == $this->content['id']){
+                $this->content_index = $index;
+                break;
+            }
+        }
+
+        $this->reset(['selected_answer', 'is_correct']);
         
     }
 
@@ -248,5 +254,18 @@ class CoursePlayer extends Component
     public function close()
     {
         return $this->confirmedExit();
+    }
+
+    public function skipContinue()
+    {
+        $enrollment_module = EnrollmentModule::with('module')->whereUuid($this->enrollment_module)->firstOrFail();
+
+        $module = $enrollment_module->module;
+
+        $nextEpisode = $enrollment_module->items()->whereNull('completed_at')->first();
+
+        $this->start = true;
+
+        return $this->showNext(module_item_id: $nextEpisode->id);
     }
 }

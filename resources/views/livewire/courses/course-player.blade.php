@@ -17,7 +17,7 @@
                     <div class="w-full h-2 bg-gray-300"></div>
                     @endif
                 @else
-                <div class="w-full h-2 bg-gray-300 rounded-r-md"></div>
+                <div class="w-full h-2 bg-gray-300"></div>
                 @endif
             @endforeach
 
@@ -149,7 +149,7 @@
                                             </div>
                                             @else
                                             <button type="button" wire:click="selectAnswer(`{{ $option->id }}`)"
-                                                class="flex justify-between w-full p-4 bg-white border border-gray-300">
+                                                class="flex w-full p-4 text-left bg-white border border-gray-300">
                                                 <p>{{ $option->answer }}</p>
                                             </button>
                                             @endif
@@ -160,9 +160,9 @@
         
                                 <section class="col-span-2">
                                     @if($selected_answer && $content->question->display_explanation)
-                                    <div class="p-4 border-4 border-gray-300 border-dashed rounded-md ">
+                                    <div class="p-4 bg-white border-4 border-gray-300 border-dashed rounded-md">
                                         <div class="flex">
-                                            <x-heroicon-s-light-bulb class="text-yellow-500 w-7 h-7"/>
+                                            <x-heroicon-s-light-bulb class="flex-shrink-0 text-yellow-500 w-7 h-7"/>
                                             <div class="pl-5">
                                                 <h3 class="font-bold">Explanation</h3>
                                                 <p class="mt-2">{{ $content->question?->explanation }}</p>
@@ -252,6 +252,7 @@
                     <h3 class="font-bold text-darkgreen">Course Overview</h3>
                     <div>
                         <button wire:click="start" type="button" class="btn-primary">Start</button>
+                        <button type="button" wire:click="skipContinue" class="px-4 underline hover:text-darkgreen">Pick where you left off?</button>
                     </div>
                 </div>
             </div>
