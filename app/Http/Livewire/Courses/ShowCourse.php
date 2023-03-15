@@ -40,6 +40,8 @@ class ShowCourse extends Component
         
         foreach($course_modules as $moduleItem)
         { 
+            $moduleItem['completed_count'] = 0;
+
             if($this->enrollment_record)
             {
                 $enrollmentModule = EnrollmentModule::where('enrollment_id', $this->enrollment_record->id)->where('module_id', $moduleItem['id'])->first();
@@ -47,12 +49,11 @@ class ShowCourse extends Component
                 if($enrollmentModule){
                     $moduleItem['completed_count'] = $enrollmentModule->items()->count();
                 }
-            }else{
-                $moduleItem['completed_count'] = 0;
             }
 
             $modules[] = $moduleItem;
         }
+
 
         $this->modules = $modules;
     }
