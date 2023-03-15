@@ -24,14 +24,14 @@
                 </div>
             </x-modal>
 
-            <x-modal-lg ref="video">
+            <x-modal-xl ref="video">
                 <x-slot name="title">
                     Add Video
                 </x-slot>
                 <div class="pt-4">
                     @livewire('courses.video-editor', ['moduleId' => $module_id])
                 </div>
-            </x-modal-lg>
+            </x-modal-xl>
 
             <x-modal-xl ref="question">
                 <x-slot name="title">

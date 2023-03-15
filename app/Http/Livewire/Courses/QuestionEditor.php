@@ -50,10 +50,11 @@ class QuestionEditor extends Component implements HasForms
         
     }
 
-    public function create($type)
+    public function create($module_id, $type)
     {
         $this->action = ActionType::Create;
         $this->type = $type;
+        $this->module_id = $module_id;
         $this->dispatchBrowserEvent('openmodal-question');
     }
 

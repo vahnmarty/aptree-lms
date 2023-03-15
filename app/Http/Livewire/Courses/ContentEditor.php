@@ -164,9 +164,11 @@ class ContentEditor extends Component implements HasForms
         $this->module = Module::find($id);
     }
 
-    public function setType($type)
+    public function setType($module_id, $type)
     {
         $this->reset('layout');
+
+        $this->module_id = $module_id;
 
         switch ($type) {
             case 'image-text':

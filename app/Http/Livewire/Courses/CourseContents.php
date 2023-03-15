@@ -47,13 +47,7 @@ class CourseContents extends Component
         $this->selected_module = Module::find($id);
     }
 
-    public function createContent($type)
-    {
-        // Emit to ContentEditor
-        $this->emit('setContentType', $type);
-
-        $this->dispatchBrowserEvent('openmodal-content');
-    }
+    
 
     public function editCard($module_item_id)
     {
@@ -95,14 +89,20 @@ class CourseContents extends Component
         return redirect()->route('courses.contents', $this->course->id);
     }
 
+    public function createContent($type)
+    {
+        $this->emit('setContentType', ['module_id' => $this->module_id, 'type' => $type] );
+        $this->dispatchBrowserEvent('openmodal-content');
+    }
+
     public function createQuestion($type)
     {
-        $this->emit('createQuestion', $type);
+        $this->emit('createQuestion', ['module_id' => $this->module_id, 'type' => $type] );
     }
 
     public function createAiQuestion()
     {
-        $this->emit('createAiQuestion', ['module_id' => $this->module_id]);
+        $this->emit('createAiQuestion', ['module_id' => $this->module_id] );
     }
 
     public function reorderTable($data)

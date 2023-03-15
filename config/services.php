@@ -35,6 +35,12 @@ return [
         'chatgpt' => [
             'questgen' => env('CHATGPT_QUESTGEN')
         ]
+    ],
+
+    
+    'apivideo' => [
+        'key' => env('APIVIDEO_KEY'),
+        'upload_token' => env('APIVIDEO_UPLOAD_TOKEN')
     ]
 
 ];
