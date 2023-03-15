@@ -1,4 +1,15 @@
 <form action="" wire:submit.prevent="submit">
+    <div>
+        @if($request_time > 30)
+        <p class="text-xs text-red-500">AI Response: {{ $request_time }}ms</p>
+        @elseif($request_time > 20)
+        <p class="text-xs text-yellow-500">AI Response: {{ $request_time }}ms</p>
+        @elseif($request_time)
+        <p class="text-xs text-green-500">AI Response: {{ $request_time }}ms</p>
+        @endif
+    </div>
+
+
     @if( count($results) )
     <div class="pt-4 space-y-4 border-t">
         @foreach($results as $r => $result)
@@ -36,12 +47,15 @@
     {{ $this->form }}
     @endif
 
+    
     <div class="py-4 pt-8 mt-16 border-t">
-        <div class="flex justify-between">
-            <h1 class="text-lg font-bold text-darkgreen">AI Question Generator</h1>
+        <div class="flex items-center justify-between">
+            <div>
+                <h1 class="text-xl font-bold text-darkgreen">AI Question Generator</h1>
+            </div>
             <div>
                 <div class="flex gap-3">
-                    <button type="button" class="btn-light" x-on:click="closeModal()">Close</button>
+                    <button x-data type="button" class="btn-light" x-on:click="closeModal()">Close</button>
                     @if(!count($results))
                     <button type="submit" class="btn-primary btn-sm"><x-loading/> Generate</button>
                     @endif

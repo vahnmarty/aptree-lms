@@ -25,6 +25,8 @@ class AiQuestionGenerator extends Component implements HasForms
 
     public $prompt;
 
+    public $request_time;
+
     public $results = [];
 
     protected $listeners = ['createAiQuestion' => 'create'];
@@ -34,11 +36,6 @@ class AiQuestionGenerator extends Component implements HasForms
         return view('livewire.courses.ai-question-generator');
     }
 
-    public function mount($moduleId)
-    {
-        $this->module_id = $moduleId;
-    }
-
     protected function getFormSchema()
     {
         return [
@@ -46,15 +43,18 @@ class AiQuestionGenerator extends Component implements HasForms
         ];
     }
 
-    public function create()
+    public function create($module_id)
     {
+        $this->module_id = $module_id;
         $this->action = ActionType::Create;
+        $this->reset(['results', 'request_time', 'prompt']);
         $this->dispatchBrowserEvent('openmodal-aiquestion');
     }
 
     public function submit()
     {
-        
+        $startTime = microtime(true);
+
         $data = $this->form->getState();
 
         $prompt = $data['prompt'];
@@ -81,9 +81,19 @@ class AiQuestionGenerator extends Component implements HasForms
         // OpenAI returns choices array, so select the first one
         $content = $response['choices'][0]['message']['content'];
 
-        $data = $this->parseResult ($content);
+        try {
+            $data = $this->parseResult ($content);
 
-        $this->results = $data['questions'];
+            $this->results = $data['questions'];
+
+            $endTime = microtime(true);
+
+            $this->request_time = round(($endTime - $startTime) * 1000, 2);
+
+        } catch (\Throwable $th) {
+            $this->alert('error', 'Error parsing your data. Please try to update your content.');
+        }
+        
     }
 
     public function parseResult($content)
@@ -112,7 +122,7 @@ class AiQuestionGenerator extends Component implements HasForms
 
     public function createQuestion($data)
     {
-        $module = Module::find($this->module_id);
+        $module = Module::where('id', $this->module_id)->firstOrfail();
 
         $module_question = $module->items()->create([
             'type' => ModuleItemType::Question,

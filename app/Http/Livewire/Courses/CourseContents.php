@@ -102,7 +102,7 @@ class CourseContents extends Component
 
     public function createAiQuestion()
     {
-        $this->emit('createAiQuestion');
+        $this->emit('createAiQuestion', ['module_id' => $this->module_id]);
     }
 
     public function reorderTable($data)

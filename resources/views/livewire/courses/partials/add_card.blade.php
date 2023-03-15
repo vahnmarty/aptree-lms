@@ -33,14 +33,14 @@
                 </div>
             </x-modal-lg>
 
-            <x-modal-lg ref="question">
+            <x-modal-xl ref="question">
                 <x-slot name="title">
                     Questions and Answers
                 </x-slot>
                 <div class="pt-4">
                     @livewire('courses.question-editor', ['moduleId' => $module_id])
                 </div>
-            </x-modal-lg>
+            </x-modal-xl>
 
             <x-modal-lg ref="aiquestion">
                 <x-slot name="title">
