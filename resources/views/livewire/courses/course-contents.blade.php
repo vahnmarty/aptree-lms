@@ -114,8 +114,15 @@
                         <!-- Select Module and it's Contents -->
                         @if ($module_id)
                             <div class="p-4 bg-white border rounded-md">
-                                <header class="p-4">
+                                <header class="flex justify-between p-4">
                                     <h2 class="text-xl font-bold text-darkgreen">{{ $selected_module->title }}</h2>
+                                    <div class="flex items-center gap-3">
+
+                                        <div class="px-3">
+                                            <x-loading/> 
+                                        </div>
+                                        <button type="button" class="flex items-center text-xs btn-primary" wire:click="$refresh"><x-heroicon-s-refresh class="w-4 h-4 mr-2"/>  Refresh</button>
+                                    </div>
                                 </header>
                                 <div wire:sortable 
                                      wire:end.stop="reorderModuleItems($event.target.sortable.toArray())"  
