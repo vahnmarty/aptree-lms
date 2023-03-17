@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Profile;
 
 use Livewire\Component;
 use App\Models\Enrollment;
@@ -9,6 +9,7 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Actions\ActionGroup;
 use Filament\Tables\Concerns\InteractsWithTable;
+use Auth;
 
 class UserCourseReports extends Component implements HasTable
 {
@@ -16,18 +17,18 @@ class UserCourseReports extends Component implements HasTable
     
     public function render()
     {
-        return view('livewire.user-course-reports');
+        return view('livewire.profile.user-course-reports');
     }
 
     protected function getTableQuery() 
     {
-        return Enrollment::query();
+        return Enrollment::where('user_id', Auth::id());
     } 
 
     protected function getTableColumns(): array 
     {
         return [
-            TextColumn::make('course.title')->searchable()->sortable(),
+            TextColumn::make('course.title'),
             TextColumn::make('completed_at')->dateTime('F d, Y'),
             TextColumn::make('remarks'),
             TextColumn::make('created_at')->dateTime('F d, Y')
