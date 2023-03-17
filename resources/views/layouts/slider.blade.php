@@ -12,13 +12,24 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="url" content="{{ url('/') }}">
 
-    @if(isset($seo->description))
-        <meta name="description" content="{{ $seo->description }}">
-    @endif
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     
     @livewireStyles
+
+    <style>
+        html,body{
+            font-family: 'Outfit', sans-serif;
+        }
+        [x-cloak]{
+            display: none !important;
+        }
+    </style>
 
     @stack('head-scripts')
 </head>

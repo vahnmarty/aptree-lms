@@ -4,8 +4,8 @@
 <div>
     <header class="flex justify-between py-6 pl-16 bg-white">
         <div class="pb-6 border-b-2 border-gray-300">
-			<h3 class="text-lg font-bold lg:text-xl text-darkgreen">Courses You're Taking</h3>
-			<p class="mt-2 text-sm lg:text-base">These are the courses you are currently enrolled in.</p>
+			<h3 class="text-lg font-bold lg:text-xl text-darkgreen">Welcome back, {{ Auth()->user()->name }}</h3>
+			<p class="mt-2 text-sm lg:text-base">You’re on a roll, you’ve taken {{ count($enrollments) }} course, and 0 Paths. Keep on studying!</p>
 		</div>
     </header>
     
@@ -21,7 +21,7 @@
 					@foreach($enrollments as $enrollment)
 					<div class="bg-white border-2 rounded-md">
 						<div class="overflow-hidden bg-gray-300 rounded-t-md">
-							<img src="{{ $enrollment->course->getImage() }}" alt="" class="w-auto h-32 mx-auto lg:h-64">
+							<img src="{{ $enrollment->course->image_url }}" alt="" class="w-auto h-32 mx-auto lg:h-64">
 						</div>
 						<div class="items-center justify-between p-4 lg:p-6 lg:flex">
 							<div>
@@ -54,7 +54,7 @@
 				</div>
 				<div class="grid grid-cols-2 gap-6 mt-8 lg:grid-cols-3">
 					@foreach($libraries as $availableCourse)
-					<div class="p-4 bg-white border rounded-md shadow-md">
+					<div class="flex flex-col p-4 bg-white border rounded-md shadow-md">
 						<div>
 							@if($availableCourse->icon == 'lightning')
 							<x-heroicon-s-lightning-bolt class="w-10 h-10 text-gray-600"/>
@@ -65,7 +65,7 @@
 						<p class="mt-1 text-orange-600">Course</p>
 						<h3 class="mt-2 text-lg font-bold">{{ $availableCourse->title }}</h3>
 						<div class="text-gray-600">{{ Str::limit($availableCourse->description, 100) }}</div>
-						<div class="flex items-center justify-between mt-4">
+						<div class="flex items-end justify-between flex-grow w-full mt-4">
 							<div class="flex gap-3">
 								<div class="flex items-center gap-1">
 									<x-heroicon-o-template class="flex-shrink-0 w-4 h-4 text-gray-400"/>

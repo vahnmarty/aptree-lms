@@ -9,6 +9,7 @@ use App\Models\Module;
 use Livewire\Component;
 use App\Models\Enrollment;
 use App\Models\ModuleItem;
+use App\Enums\ModuleItemType;
 use App\Models\EnrollmentModule;
 use App\Models\EnrollmentModuleItem;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
@@ -26,6 +27,7 @@ class CoursePlayer extends Component
     public $module, $module_id, $enrollment_module;
     public $contents = [], $content_index = 0, $content;
     public $items_completed = 0, $items_missed = 0, $next_module;
+    public $skippable;
 
     # Quiz attributes
     public $start = false, $end = false;
@@ -45,19 +47,28 @@ class CoursePlayer extends Component
     {
         $this->enrollment = Enrollment::whereUuid($uuid)->firstOrFail();
 
+
         $this->course = $this->enrollment->course;
 
         # Module URL
         if($this->enrollment_module && $this->module_id){
+
+            $enrollment_module = EnrollmentModule::with('module', 'items')->whereUuid($this->enrollment_module)->whereNull('completed_at')->first();
             $this->module = Module::find($this->module_id);
+            $this->skippable = $enrollment_module->items()->whereNull('completed_at')->count() ? true : false;
         }
         # Fresh start
         else{
-            $this->module = $this->course->modules()->ordered()->first();
-            $this->module_id = $this->module->id;
+
+            $enrollment_module = EnrollmentModule::with('module')->where('enrollment_id', $this->enrollment->id)->whereNull('completed_at')->first();
+
+            $this->module = $enrollment_module->module;
+            $this->module_id = $enrollment_module->module_id;
+
+            $this->skippable = false;
         }
 
-        $this->contents = ModuleItem::with('question.randomAnswers')->where('module_id', $this->module_id)->ordered()->get();
+        $this->contents = ModuleItem::with('question.randomAnswers')->where('module_id', $this->module_id)->ordered()->get()->toArray();
     }
 
 
@@ -172,7 +183,7 @@ class CoursePlayer extends Component
         $module_item = ModuleItem::find($module_item_id);
 
         # Record
-        $record = EnrollmentModuleItem::with('moduleItem')->firstOrCreate([
+        $record = EnrollmentModuleItem::with('moduleItem.question.randomAnswers')->firstOrCreate([
                 'enrollment_id' => $this->enrollment->id, 
                 'enrollment_module_id' => $enrollment_module->id,
                 'module_item_id' => $module_item->id
@@ -180,7 +191,7 @@ class CoursePlayer extends Component
         
         $this->episode = $record;
 
-        $this->content = $record->moduleItem;
+        $this->content = $record->moduleItem->toArray();
 
         foreach($this->contents as $index => $content)
         {
@@ -231,6 +242,8 @@ class CoursePlayer extends Component
         # Display
         $this->selected_answer = $answerId;
         $this->is_correct = $answer->is_correct;
+
+        $this->skipRender();
     }
 
     

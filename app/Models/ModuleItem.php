@@ -26,9 +26,16 @@ class ModuleItem extends Model implements Sortable
 
     protected $guarded = [];
 
+    protected $appends = [ 'image_url' ]; 
+
     public function getImage()
     {
         return Storage::disk('do')->url($this->image);
+    }
+
+    public function getImageUrlAttribute()
+    {
+        return $this->getImage();
     }
 
     public function question()

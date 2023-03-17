@@ -53,7 +53,11 @@
                                 </div>
                                 <div class="flex items-center gap-2 pr-4">
                                     <span>{{ $module['completed_count']  .' / ' .$module['items_count'] }}</span>
+                                    @if( ($module['completed_count'] / $module['items_count']) == 1)
                                     <x-heroicon-s-check-circle class="w-5 h-5 text-blue-700"/>
+                                    @else
+                                    <x-heroicon-s-check-circle class="w-5 h-5 text-gray-400"/>
+                                    @endif
                                 </div>
                             </div>
                         </div>
