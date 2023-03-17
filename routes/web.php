@@ -19,7 +19,9 @@ use App\Http\Livewire\Courses\CreateCourse;
 use App\Http\Livewire\Courses\ManageCourses;
 use App\Http\Controllers\DashboardController;
 use App\Http\Livewire\Courses\CourseContents;
+use App\Http\Livewire\Pathway\PathwayBuilder;
 use App\Http\Controllers\InvitationController;
+use App\Http\Livewire\Pathway\PathwayContents;
 use App\Http\Livewire\Courses\ModuleItemPreview;
 
 /*
@@ -55,11 +57,14 @@ Route::group(['prefix' => 'courses', 'middleware' => ['auth']], function(){
     Route::get('/{id}/contents', CourseContents::class)->name('courses.contents');
     Route::get('/{uuid}/play', CoursePlayer::class)->name('courses.play');
     Route::get('/module-preview/{id}', ModuleItemPreview::class)->name('courses.module-preview');
+    
 });
 
 Route::group(['middleware' => ['auth']], function(){
 
     Route::get('template-library', TemplateLibrary::class)->name('template.library');
+    Route::get('pathway-builder', PathwayBuilder::class)->name('pathway.builder');
+    Route::get('pathway/{id}/contents', PathwayContents::class)->name('pathway.contents');
     Route::get('my-teams', ManageTeams::class)->name('teams.index');
     Route::get('my-teams/{id}/invitations', TeamInvitations::class)->name('teams.invitations');
     Route::get('profile', UserProfile::class)->name('profile.index');
