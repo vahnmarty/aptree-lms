@@ -20,6 +20,7 @@ use App\Http\Livewire\Courses\CreateCourse;
 use App\Http\Livewire\Courses\ManageCourses;
 use App\Http\Controllers\DashboardController;
 use App\Http\Livewire\Courses\CourseContents;
+use App\Http\Livewire\Pathway\ManagePathways;
 use App\Http\Livewire\Pathway\PathwayBuilder;
 use App\Http\Controllers\InvitationController;
 use App\Http\Livewire\Pathway\PathwayContents;
@@ -64,6 +65,7 @@ Route::group(['prefix' => 'courses', 'middleware' => ['auth']], function(){
 Route::group(['middleware' => ['auth']], function(){
 
     Route::get('template-library', TemplateLibrary::class)->name('template.library');
+    Route::get('pathways', ManagePathways::class)->name('pathway.index');
     Route::get('pathway-builder/{id?}', PathwayBuilder::class)->name('pathway.builder');
     Route::get('pathway/{id}/contents', PathwayContents::class)->name('pathway.contents');
     Route::get('pathway/{id}', ShowPathway::class)->name('pathway.show');

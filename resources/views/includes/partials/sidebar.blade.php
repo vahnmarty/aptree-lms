@@ -37,12 +37,6 @@
                     </x-slot>
                 </x-sidebar-item>
 
-                <x-sidebar-item label="Template Library" link="{{ route('template.library') }}" :active="request()->is('template-library*') ">
-                    <x-slot name="icon">
-                        <x-heroicon-s-collection class="flex-shrink-0 w-6 h-6 ml-1 mr-4 text-gray-500"/>
-                    </x-slot>
-                </x-sidebar-item>
-
                 <x-sidebar-item label="My Profile" link="{{ route('profile.index') }}" :active="request()->is('profile*') ">
                     <x-slot name="icon">
                         <x-heroicon-s-user-circle class="flex-shrink-0 w-6 h-6 ml-1 mr-4 text-gray-500"/>
@@ -55,13 +49,13 @@
                     </x-slot>
                 </x-sidebar-item>
 
-                <x-sidebar-item label="Course Builder" link="{{ route('courses.index') }}" :active="request()->is('courses*') ">
+                <x-sidebar-item label="Courses Library" link="{{ route('courses.index') }}" :active="request()->is('courses*') ">
                     <x-slot name="icon">
                         <x-heroicon-s-academic-cap class="flex-shrink-0 w-6 h-6 ml-1 mr-4 text-gray-500"/>
                     </x-slot>
                 </x-sidebar-item>
 
-                <x-sidebar-item label="Pathway Builder" link="{{ route('pathway.builder') }}" :active="request()->is('pathway-builder*') ">
+                <x-sidebar-item label="Pathway Tracks" link="{{ route('pathway.index') }}" :active="request()->is('pathway*') ">
                     <x-slot name="icon">
 
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="flex-shrink-0 w-6 h-6 ml-1 mr-4 text-gray-500">
