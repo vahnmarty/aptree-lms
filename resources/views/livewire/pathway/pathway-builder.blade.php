@@ -10,11 +10,17 @@
                 <span class="px-1.5 py-0.5 text-white rounded-md bg-darkgreen text-sm font-bold">1</span>
                 <span class="ml-2 font-semibold text-darkgreen">Overview</span>
             </div>
-
+            @if($pathway)
             <a href="{{ route('pathway.contents', $pathway->id) }}">
                 <span class="px-1.5 py-0.5 text-darkgreen rounded-sm bg-gray-300 text-sm font-normal">2</span>
                 <span class="ml-2 font-normal text-gray-500">Select Courses</span>
             </a>
+            @else
+            <div>
+                <span class="px-1.5 py-0.5 text-darkgreen rounded-sm bg-gray-300 text-sm font-normal">2</span>
+                <span class="ml-2 font-normal text-gray-500">Select Courses</span>
+            </div>
+            @endif
         </nav>
         <section class="mt-8">
             <form action="" wire:submit.prevent="submit">
