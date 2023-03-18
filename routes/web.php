@@ -14,6 +14,7 @@ use App\Http\Livewire\TeamInvitations;
 use App\Http\Livewire\TemplateLibrary;
 use App\Http\Livewire\Courses\EditCourse;
 use App\Http\Livewire\Courses\ShowCourse;
+use App\Http\Livewire\Pathway\ShowPathway;
 use App\Http\Livewire\Courses\CoursePlayer;
 use App\Http\Livewire\Courses\CreateCourse;
 use App\Http\Livewire\Courses\ManageCourses;
@@ -65,6 +66,7 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('template-library', TemplateLibrary::class)->name('template.library');
     Route::get('pathway-builder/{id?}', PathwayBuilder::class)->name('pathway.builder');
     Route::get('pathway/{id}/contents', PathwayContents::class)->name('pathway.contents');
+    Route::get('pathway/{id}', ShowPathway::class)->name('pathway.show');
     Route::get('my-teams', ManageTeams::class)->name('teams.index');
     Route::get('my-teams/{id}/invitations', TeamInvitations::class)->name('teams.invitations');
     Route::get('profile', UserProfile::class)->name('profile.index');
