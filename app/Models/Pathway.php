@@ -15,4 +15,9 @@ class Pathway extends Model
     {
         return $this->belongsTo(Goal::class);
     }
+
+    public function courses()
+    {
+        return $this->belongsToMany(Course::class, 'pathway_courses');
+    }
 }

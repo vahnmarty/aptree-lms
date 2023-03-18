@@ -23,9 +23,7 @@ class Course extends Model
 
     public function category()
     {
-        return tenancy()->central(function(){
-            return $this->belongsTo(CourseCategory::class);
-        });
+        return $this->belongsTo(CourseCategory::class);
     }
 
     public function subcategories()

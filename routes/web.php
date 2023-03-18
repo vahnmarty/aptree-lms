@@ -63,7 +63,7 @@ Route::group(['prefix' => 'courses', 'middleware' => ['auth']], function(){
 Route::group(['middleware' => ['auth']], function(){
 
     Route::get('template-library', TemplateLibrary::class)->name('template.library');
-    Route::get('pathway-builder', PathwayBuilder::class)->name('pathway.builder');
+    Route::get('pathway-builder/{id?}', PathwayBuilder::class)->name('pathway.builder');
     Route::get('pathway/{id}/contents', PathwayContents::class)->name('pathway.contents');
     Route::get('my-teams', ManageTeams::class)->name('teams.index');
     Route::get('my-teams/{id}/invitations', TeamInvitations::class)->name('teams.invitations');

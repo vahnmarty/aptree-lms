@@ -29,15 +29,21 @@ class PathwayBuilder extends Component implements HasForms
     public $offer_certificate;
     public $image;
 
+    public $pathway;
+
     
     public function render()
     {
         return view('livewire.pathway.pathway-builder');
     }
 
-    public function mount()
+    public function mount($id = null)
     {
-        
+        if($id){
+            $this->pathway = Pathway::findOrFail($id);
+            $this->form->fill($this->pathway->toArray());
+            $this->tags = $this->pathway->tags->pluck('id');
+        }
     }
 
     protected function getFormSchema(): array
@@ -107,8 +113,9 @@ class PathwayBuilder extends Component implements HasForms
         ];
     }
 
-    public function submit()
+    public function store()
     {
+
         $data = $this->form->getState();
 
         # Create Pathway
@@ -134,6 +141,45 @@ class PathwayBuilder extends Component implements HasForms
         }
         
         return redirect()->route('pathway.contents', ['id' => $pathway->id]);
+    }
+
+    public function update()
+    {
+        $data = $this->form->getState();
+
+        # Create Pathway
+        $pathway = $this->pathway;
+        $pathway->title = $data['title'];
+        $pathway->icon = $data['icon'];
+        $pathway->description = $data['description'];
+        $pathway->goal_id = $data['goal_id'];
+        $pathway->estimated_time = $data['estimated_time'];
+        $pathway->offer_certificate = $data['offer_certificate'];
+        $pathway->image = $data['image'];
+        $pathway->slug = Str::slug($data['title']);
+        $pathway->save();
+    
+
+        try {
+            # Relationships
+            $pathway->tags()->attach($data['tags']);
+
+        } catch (\Throwable $th) {
+
+            throw $th;
+        }
+        
+        return redirect()->route('pathway.contents', ['id' => $pathway->id]);
+    }
+
+    public function submit()
+    {
+        if($this->pathway){
+            return $this->update();
+        }
+
+        return $this->store();
+        
 
     }
 }
