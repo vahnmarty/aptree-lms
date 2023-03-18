@@ -9,7 +9,9 @@ use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
@@ -64,6 +66,25 @@ class User extends Authenticatable
     public function isAdmin()
     {
         return $this->hasRole('admin');
+    }
+
+
+    public function assignments()
+    {
+        return $this->hasMany(Assignment::class);
+    }
+
+    public function pathways()
+    {
+        return $this->hasMany(Assignment::class)->where('assignmentable_type', Pathway::class)->with('pathway');
+    }
+
+    /**
+     * Get the courses assigned to the user.
+     */
+    public function courses(): MorphToMany
+    {
+        return $this->assignments()->where('assignmentable_type', Course::class)->with('assignmentable');
     }
 
 }

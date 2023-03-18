@@ -32,7 +32,7 @@
                 x-on:click.away="isOpen = false"
                 {{ $attributes->merge(['class' => 'relative px-8 pt-5 pb-4 overflow-hidden text-left transition-all transform bg-white rounded-lg shadow-xl sm:my-8 sm:w-full sm:max-w-3xl sm:p-6']) }}>
 
-                <div class="flex justify-end">
+                <div class="absolute right-5">
                     <button x-on:click="isOpen = false" type="button">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
                             <path fill-rule="evenodd"

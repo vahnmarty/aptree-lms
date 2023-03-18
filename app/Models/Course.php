@@ -6,6 +6,7 @@ use Storage;
 use Spatie\Tags\HasTags;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Course extends Model
@@ -52,5 +53,10 @@ class Course extends Model
         }
 
         return asset('img/hero.jpg');
+    }
+
+    public function assignments(): MorphMany
+    {
+        return $this->morphMany(Assignment::class, 'assignmentable');
     }
 }

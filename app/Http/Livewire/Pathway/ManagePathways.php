@@ -18,6 +18,6 @@ class ManagePathways extends Component
 
     public function mount()
     {
-        $this->pathways = Pathway::get();
+        $this->pathways = Pathway::withCount('courses')->get();
     }
 }

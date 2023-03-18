@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Spatie\Tags\HasTags;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Pathway extends Model
@@ -24,5 +25,15 @@ class Pathway extends Model
     public function courses()
     {
         return $this->belongsToMany(Course::class, 'pathway_courses');
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'assignments');
+    }
+
+    public function assignments(): MorphMany
+    {
+        return $this->morphMany(Assignment::class, 'assignmentable');
     }
 }

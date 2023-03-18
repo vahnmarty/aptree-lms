@@ -26,15 +26,13 @@
                     <!-- Use an "onChange" listener to redirect the user to the selected tab URL. -->
                     <select id="tabs" name="tabs"
                         class="block w-full py-2 pl-3 pr-10 text-base border-gray-300 rounded-md focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
-                        <option>Applied</option>
+                        <option>View All</option>
 
-                        <option>Phone Screening</option>
+                        <option>Published</option>
 
-                        <option selected>Interview</option>
+                        <option>Drafts</option>
 
-                        <option>Offer</option>
-
-                        <option>Disqualified</option>
+                        <option>Deleted</option>
                     </select>
                 </div>
                 <div class="hidden sm:block">
@@ -82,7 +80,7 @@
             <div class="grid grid-cols-2 gap-6 mt-8">
 
                 @foreach($pathways as $pathway)
-                <div class="p-6 bg-white border rounded-md">
+                <div wire:key="grid-pathway-{{ $pathway->id }}" class="p-6 bg-white border rounded-md">
                     <div>
                         <x-heroicon-s-template class="w-10 h-10 text-gray-400"/>
                     </div>
@@ -115,11 +113,19 @@
                                         <x-heroicon-s-pencil  class="w-5 h-5 mr-3 text-gray-400 group-hover:text-gray-500"/>
                                         Edit
                                     </a>
-                                    <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 group" role="menuitem"
-                                        tabindex="-1" id="menu-item-0">
-                                        <x-heroicon-s-duplicate  class="w-5 h-5 mr-3 text-gray-400 group-hover:text-gray-500"/>
-                                        Assign
-                                    </a>
+                                    <div>
+                                        <a x-data x-on:click.prevent="$dispatch('openmodal-assign-pathway-{{ $pathway->id }}'); " href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 group" role="menuitem"
+                                            tabindex="-1" id="menu-item-0">
+                                            <x-heroicon-s-duplicate  class="w-5 h-5 mr-3 text-gray-400 group-hover:text-gray-500"/>
+                                            Assign
+                                        </a>
+
+                                        <x-modal-default ref="assign-pathway-{{ $pathway->id }}">
+                                            <div>
+                                                @livewire('pathway.assign-pathway', ['pathwayId' => $pathway->id])
+                                            </div>
+                                        </x-modal-default>
+                                    </div>
                                 </div>
                             </x-dropdown>
                         </div>

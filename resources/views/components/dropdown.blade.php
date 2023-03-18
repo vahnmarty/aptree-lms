@@ -1,4 +1,6 @@
-<div x-data="{ isOpen: false }" class="relative inline-block text-left"
+<div x-data="{ isOpen: false }"
+     class="relative inline-block text-left"
+    x-on:close-dropdown.window="isOpen = false"
     x-on:click.away="isOpen = false">
     <div x-on:click="isOpen = !isOpen">
         {{ $button }}
