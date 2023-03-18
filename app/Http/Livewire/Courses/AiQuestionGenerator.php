@@ -81,6 +81,9 @@ class AiQuestionGenerator extends Component implements HasForms
         // OpenAI returns choices array, so select the first one
         $content = $response['choices'][0]['message']['content'];
 
+        Log::channel('openai')->info('CHATGPT Result');
+        Log::channel('openai')->info($content);
+
         try {
             $data = $this->parseResult ($content);
 
