@@ -91,7 +91,12 @@ class AiQuestionGenerator extends Component implements HasForms
             $this->request_time = round(($endTime - $startTime) * 1000, 2);
 
         } catch (\Throwable $th) {
-            $this->alert('error', 'Error parsing your data. Please try to update your content.');
+            if(config('app.debug')){
+                throw $th;
+            }else{
+                $this->alert('error', 'Error parsing your data. Please try to update your content.');
+            }
+            
         }
         
     }
