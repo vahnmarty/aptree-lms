@@ -2,8 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\Goal;
 use App\Models\Course;
 use App\Models\Module;
+use App\Models\Pathway;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
@@ -11,6 +13,16 @@ class CoursesTableSeeder extends Seeder
 {
     public function run()
     {
+        $pathway = Pathway::firstOrCreate(['title' => 'Full Stack Developer'], [
+            'title' => "Full Stack Developer",
+            'slug' => 'full-stack-developer',
+            'goal_id' => Goal::where('name', 'Full-Stack Web Developer')->first()?->id,
+            'icon' => 'education',
+            'estimated_time' => '72:00',
+            'offer_certificate' => true,
+            'description' => 'Are you interested in becoming a Full Stack Developer? Our Full Stack Developer pathway track provides you with the knowledge and skills needed to develop web applications from front-end to back-end. You will start by learning the fundamentals of web development, including HTML, CSS, and JavaScript. From there, you will dive deeper into programming with server-side languages such as PHP and databases such as MySQL. You will also learn how to build dynamic web applications using popular frameworks such as Laravel and React. Along the way, you will gain practical experience by working on real-world projects and building a portfolio of work to showcase your skills. By the end of this pathway track, you will be equipped with the tools needed to launch a career as a Full Stack Developer.'
+        ]);
+
         $courses = [
             [
                 'title' => 'Web Development Basics',
@@ -77,6 +89,8 @@ class CoursesTableSeeder extends Seeder
             ],
         ];
 
+        $course_ids = [];
+
         foreach ($courses as $item) {
 
             $course = Course::firstOrCreate(['title' => $item['title']], 
@@ -95,7 +109,11 @@ class CoursesTableSeeder extends Seeder
                     'course_id' => $course->id,
                 ]);
             }
+
+            $course_ids[] = $course->id;
         }
+
+        $pathway->courses()->sync($course_ids);
     }
 
 
