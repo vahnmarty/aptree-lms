@@ -78,11 +78,15 @@ class CoursesTableSeeder extends Seeder
         ];
 
         foreach ($courses as $item) {
-            $course = Course::where('title', $item['title'])->first();
 
-            if(!$course){
-                $course = Course::create($item);
-            }
+            $course = Course::firstOrCreate(['title' => $item['title']], 
+                [
+                'title' => $item['title'],
+                'slug' => $item['slug'],
+                'icon' => $item['icon'],
+                'description' => $item['description'],
+                'estimated_time' => $item['estimated_time'],
+            ]);
 
             foreach ($item['modules'] as $moduleData) {
                 $module = Module::create([
