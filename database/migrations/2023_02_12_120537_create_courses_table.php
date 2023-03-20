@@ -26,8 +26,6 @@ return new class extends Migration
             $table->boolean('required_passing_modules')->nullable();
             $table->integer('passing_score')->nullable();
             $table->string('status')->nullable();
-            $table->timestamp('cloned_at')->nullable();
-            $table->string('tenant_id')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
