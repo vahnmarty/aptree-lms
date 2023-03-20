@@ -18,7 +18,7 @@
                             </div>
                             <div class="flex items-center gap-1">
                                 <x-heroicon-o-clock class="w-4 h-4 text-gray-400"/>
-                                <span class="text-sm text-darkgreen">{{ Carbon\Carbon::parse($pathway->estimated_time)->format('H:i') }} minutes</span>
+                                <span class="text-sm text-darkgreen">{{ $pathway->estimated_time }} minutes</span>
                             </div>
                             @if($pathway->offer_certificate)
                             <div class="flex items-center gap-1">
@@ -76,7 +76,7 @@
 								</div>
 								<div class="items-center hidden gap-1 md:flex">
 									<x-heroicon-o-clock class="w-4 h-4 text-gray-400"/>
-									<span class="text-sm">{{ Carbon\Carbon::parse($availableCourse->estimated_time)->format('H:i') }} minutes</span>
+									<span class="text-sm">{{ $availableCourse->estimated_time }} minutes</span>
 								</div>
 							</div>
 							<x-dropdown>
