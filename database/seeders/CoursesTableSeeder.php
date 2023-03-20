@@ -78,8 +78,6 @@ class CoursesTableSeeder extends Seeder
         ];
 
         foreach ($courses as $item) {
-            $course = Course::firstOrCreate(['title' => $item['title']], $item);
-
             $course = Course::where('title', $item['title'])->first();
 
             if(!$course){
