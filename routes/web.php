@@ -37,9 +37,7 @@ use App\Http\Livewire\Courses\ModuleItemPreview;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::redirect('/', 'login');
 
 Route::get('chatgpt', [AiController::class, 'chatgpt']);
 

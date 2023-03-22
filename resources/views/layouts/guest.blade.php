@@ -13,6 +13,8 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+        @livewireStyles
     </head>
     <body>
         <header>
@@ -21,5 +23,11 @@
         <div class="font-sans antialiased text-gray-900">
             {{ $slot }}
         </div>
+
+        @yield('javascript')
+    
+
+
+    @livewireScripts
     </body>
 </html>

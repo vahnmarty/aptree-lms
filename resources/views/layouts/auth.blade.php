@@ -20,10 +20,14 @@
                 font-family: 'Outfit', sans-serif;
             }
         </style>
+
+        @livewireStyles
     </head>
     <body>
         <div class="antialiased text-gray-600">
             {{ $slot }}
         </div>
+
+        @livewireScripts
     </body>
 </html>
