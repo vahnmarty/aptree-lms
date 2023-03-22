@@ -1,6 +1,6 @@
 <div>
-    <header class="flex justify-between px-16 py-6">
-        <h1 class="text-4xl font-bold leading-7 text-darkgreen sm:leading-9">Course Library</h1>
+    <header class="flex items-center justify-between px-4 py-6 lg:px-16">
+        <h1 class="text-xl font-bold leading-7 lg:text-3xl text-darkgreen sm:leading-9">Course Library</h1>
         <div>
             @if(auth()->user()->isAdmin())
             <a href="{{ route('courses.create') }}" type="button" class="inline-flex items-center w-full btn-primary">
@@ -15,7 +15,7 @@
             @endif
         </div>
     </header>
-    <div class="px-16 py-12 bg-gray-100">
+    <div class="px-4 py-12 bg-gray-100 lg:px-16">
         <section>
 
             <div class="flex justify-between pb-2 border-b border-gray-200">
@@ -83,7 +83,7 @@
                         </nav>
                     </div>
                 </div>
-                <div class="flex gap-2">
+                <div class="hidden gap-2 lg:flex">
                     <select class="text-sm border border-gray-200 rounded-md">
                         <option value="">Filter by Author</option>
                     </select>
@@ -96,7 +96,7 @@
         </section>
 
         <section class="mt-8 text-darkgreen">
-            <div class="grid grid-cols-3 gap-6">
+            <div class="grid gap-6 lg:grid-cols-3">
                 @foreach($courses as $course)
                 <div class="p-4 bg-white border rounded-md shadow-md">
                     <div>

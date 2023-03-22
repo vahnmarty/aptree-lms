@@ -2,22 +2,22 @@
 
 @section('content')
 <div>
-    <header class="flex justify-between py-6 pl-16 bg-white">
-        <div class="pb-6 border-b-2 border-gray-300">
+    <header class="flex justify-between py-6 pl-4 bg-white lg:pl-16">
+        <div>
 			<h3 class="text-lg font-bold lg:text-xl text-darkgreen">Welcome back, {{ Auth()->user()->name }}</h3>
 			<p class="mt-2 text-sm lg:text-base">You’re on a roll, you’ve taken {{ count($enrollments) }} course, and 0 Paths. Keep on studying!</p>
 		</div>
     </header>
     
     <div>
-        <div class="px-8 py-12 pl-16 space-y-8 bg-gray-100">
+        <div class="px-8 py-12 pl-4 space-y-8 bg-gray-100 lg:pl-16">
 			@if(count($enrollments))
 			<section>
 				<div class="pb-6 border-b-2 border-gray-300">
 					<h3 class="text-lg font-bold lg:text-xl text-darkgreen">Courses You're Taking</h3>
 					<p class="mt-2 text-sm lg:text-base">These are the courses you are currently enrolled in.</p>
 				</div>
-				<div class="grid grid-cols-2 gap-6 mt-8 lg:grid-cols-2">
+				<div class="grid gap-6 mt-8 lg:grid-cols-2">
 					@foreach($enrollments as $enrollment)
 					<div class="bg-white border-2 rounded-md">
 						<div class="overflow-hidden bg-gray-300 rounded-t-md">
@@ -52,7 +52,7 @@
 					<h3 class="text-xl font-bold text-darkgreen">Library</h3>
 					<a href="{{ url('courses') }}" class="inline-flex items-center text-darkgreen">More <x-heroicon-s-chevron-right class="w-4 h-4"/> </a>
 				</div>
-				<div class="grid grid-cols-2 gap-6 mt-8 lg:grid-cols-3">
+				<div class="grid gap-6 mt-8 md:grid-cols-2 lg:grid-cols-3">
 					@foreach($libraries as $availableCourse)
 					<div class="flex flex-col p-4 bg-white border rounded-md shadow-md">
 						<div>

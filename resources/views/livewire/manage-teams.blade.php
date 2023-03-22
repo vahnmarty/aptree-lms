@@ -1,12 +1,12 @@
 <div>
-    <header class="flex justify-between px-8 py-6 pl-16 bg-white">
-        <h1 class="text-4xl font-bold leading-7 text-darkgreen sm:leading-9">Teams</h1>
+    <header class="flex justify-between px-4 py-6 bg-white lg:px-8 lg:pl-16">
+        <h1 class="text-2xl font-bold leading-7 text-darkgreen sm:leading-9">Teams</h1>
         <div>
             
         </div>
     </header>
     
-    <div class="px-8 py-12 pl-16 bg-gray-100">
+    <div class="px-4 py-12 bg-gray-100 lg:px-8 lg:pl-16">
         {{ $this->table }}
     </div>
 </div>
