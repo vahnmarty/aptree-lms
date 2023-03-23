@@ -89,10 +89,9 @@ class CourseContents extends Component
         return redirect()->route('courses.contents', $this->course->id);
     }
 
-    public function createContent($type)
+    public function createContent($layout)
     {
-        $this->emit('setContentType', ['module_id' => $this->module_id, 'type' => $type] );
-        $this->dispatchBrowserEvent('openmodal-content');
+        $this->emit('setContentType', ['module_id' => $this->module_id, 'layout' => $layout] );
     }
 
     public function createQuestion($type)

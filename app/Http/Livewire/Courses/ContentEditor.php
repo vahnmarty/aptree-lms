@@ -31,17 +31,21 @@ class ContentEditor extends Component implements HasForms
 
     public $action = 'create';
 
-    protected $listeners = ['setContentType' => 'setType', 'editContent', 'renderComponent' => '$refresh'];
+    protected $listeners = ['setContentType' => 'setContent', 'editContent', 'renderComponent' => '$refresh'];
     
     public function render()
     {
         return view('livewire.courses.content-editor');
     }
 
-    public function mount($moduleId)
+    public function mount($moduleId = null)
     {
         $this->type = ModuleItemType::Content;
-        $this->setModule($moduleId);
+
+        if($moduleId){
+            $this->setModule($moduleId);
+        }
+        
     }
 
     protected function getFormSchema(): array
@@ -164,13 +168,14 @@ class ContentEditor extends Component implements HasForms
         $this->module = Module::find($id);
     }
 
-    public function setType($module_id, $type)
+    public function setContent($params)
     {
         $this->reset('layout');
 
-        $this->module_id = $module_id;
+        $this->module_id = $params['module_id'];
+        $layout = $params['layout'];
 
-        switch ($type) {
+        switch ($layout) {
             case 'image-text':
                 $this->layout = ContentLayout::LeftImageRightText;
                 break;
@@ -188,12 +193,17 @@ class ContentEditor extends Component implements HasForms
                 break;
             
             default:
+                $this->layout = ContentLayout::LeftImageRightText;
                 break;
         }
 
-        $this->getContentForm();
+        if($this->layout){
 
-        $this->dispatchBrowserEvent('openmodal-content');
+            $this->getContentForm();
+
+            $this->dispatchBrowserEvent('openmodal-content');
+        }
+        
         
     }
 
