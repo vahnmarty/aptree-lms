@@ -1,7 +1,7 @@
 
 
 <div>
-    <header class="flex justify-between px-8 py-6">
+    <header class="flex justify-between px-4 py-6 lg:px-8">
         <h1 class="text-3xl font-bold leading-7 text-darkgreen sm:leading-9">Pathways</h1>
         <div>
             @if(auth()->user()->isAdmin())
@@ -17,7 +17,7 @@
             @endif
         </div>
     </header>
-    <div class="px-8 py-12 bg-gray-100">
+    <div class="px-4 py-12 bg-gray-100 lg:px-8">
         <section>
 
             <div class="flex justify-between pb-2 border-b border-gray-200">
@@ -77,7 +77,7 @@
                 </div>
             </div>
 
-            <div class="grid grid-cols-2 gap-6 mt-8">
+            <div class="grid gap-6 mt-8 lg:grid-cols-2">
 
                 @foreach($pathways as $pathway)
                 <div wire:key="grid-pathway-{{ $pathway->id }}" class="p-6 bg-white border rounded-md">

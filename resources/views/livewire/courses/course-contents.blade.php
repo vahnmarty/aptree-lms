@@ -1,9 +1,9 @@
 <div class="bg-gray-100">
-    <header class="flex justify-between px-16 py-6 bg-white">
-        <h1 class="text-3xl font-bold leading-7 text-darkgreen sm:leading-9">Add New Course</h1>
+    <header class="flex justify-between px-4 py-6 bg-white lg:px-16">
+        <h1 class="text-xl font-bold leading-7 lg:text-3xl text-darkgreen sm:leading-9">Add New Course</h1>
     </header>
     
-    <div class="px-16">
+    <div class="px-4 lg:px-16">
     
         <x-modal-lg ref="module-create">
             <div class="pt-4">
@@ -36,9 +36,26 @@
                     <span class="ml-2 font-semibold text-darkgreen">Content</span>
                 </div>
             </nav>
+
+
+        <div x-data="{ module: @entangle('module_id'), width: window.innerWidth, isMobile: false }" 
+            x-on:resize.window="width = window.innerWidth; isMobile = width <= 640"
+            x-init="isMobile = width <= 640"
+            class="mt-8">
+            
+            <div class="block md:hidden"
+                :class="module ? 'visible' : 'invisible'">
+                <button type="button"  x-on:click.prevent="module = null" class="inline-flex btn-primary" >
+                    <x-heroicon-s-chevron-left class="w-5 h-5 mr-2 text-white"/>
+                    Back
+                </button>
+            </div>
+
+  
+
             <section class="mt-8">
-                <div class="grid grid-cols-6 gap-6">
-                    <div class="col-span-2">
+                <div class="grid gap-6 md:grid-cols-5 lg:grid-cols-6">
+                    <div x-show="!module || !isMobile" class="md:col-span-2 lg:col-span-2">
                         <div class="bg-white rounded-lg">
                             <!-- List of Modules -->
                             <div x-data="{ module_id: @entangle('module_id') }" class="relative z-20 px-6 py-6">
@@ -55,7 +72,7 @@
                                     <div
                                         wire:sortable.item="{{ $module->id }}"
                                         wire:sortable.handle
-                                        wire:key="module-{{ $module->id  . '_' . time() }}"
+                                        wire:key="lg-module-{{ $module->id  . '_' . time() }}"
                                         wire:click="selectModule({{ $module->id }})"
                                         :class="module_id == {{ $module->id }} ? 'border-2 border-orange-400 bg-orange-50' : ''"
                                         class="px-2 py-2 bg-white border rounded-md cursor-pointer hover:bg-gray-50">
@@ -109,7 +126,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-span-4">
+                    <div x-show="module || !isMobile" class="md:col-span-3 lg:col-span-4">
 
                         <!-- Select Module and it's Contents -->
                         @if ($module_id)
@@ -130,7 +147,7 @@
                                     @foreach($selected_module->items()->ordered()->get() as $card)
                                     <div 
                                         wire:sortable.item="{{ $card->id }}"
-                                        wire:key="card-{{ $card->id  . '_' . time() }}"
+                                        wire:key="lg-card-{{ $card->id  . '_' . time() }}"
                                         class="px-4 py-2 mb-4 bg-white border-2 border-gray-300 rounded-md shadow-sm cursor-pointer">
                                         <div class="flex items-center justify-between gap-4">
                                             <div class="flex items-center col-span-3">
@@ -179,6 +196,10 @@
                     </div>
                 </div>
             </section>
+        </div>
+
+  
+            
         </div>
     </div>
     
