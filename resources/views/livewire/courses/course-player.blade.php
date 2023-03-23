@@ -105,11 +105,10 @@
                                 <div class="p-4 bg-gray-300 rounded-lg shadow-sm border-md">
                                     <img src="{{ asset('img/question.jpg') }}" class="w-full h-auto" alt="">
                                 </div>
-                                @if ($content['question'])
+                                @if (!empty( $content['question']) )
                                 <div>
                                     <h2 class="font-bold text-gray-900">{{ $content['question']['title'] }}</h2>
                                     <div class="mt-8 space-y-4">
-                                        random
                                         @foreach ($content['question']['random_answers'] as $option)
                                         <div> 
                                             @if ($selected_answer)
@@ -133,7 +132,7 @@
                                                         </div>
                                                     @endif
                                                 @else
-                                                    @if ($option->is_correct)
+                                                    @if ($option['is_correct'])
                                                         <div class="flex justify-between w-full p-4 border border-gray-300 bg-emerald-100">
                                                             <p>{{ $option['answer'] }}</p>
                                                             <div>

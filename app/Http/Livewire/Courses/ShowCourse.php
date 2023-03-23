@@ -54,7 +54,6 @@ class ShowCourse extends Component
             $modules[] = $moduleItem;
         }
 
-
         $this->modules = $modules;
     }
 

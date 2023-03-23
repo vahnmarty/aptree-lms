@@ -51,6 +51,7 @@
                                     </div>
                                     <p class="ml-4 font-bold">{{ $module['title'] }}</p>
                                 </div>
+                                @if($module['items_count'])
                                 <div class="flex items-center gap-2 pr-4">
                                     <span>{{ $module['completed_count']  .' / ' .$module['items_count'] }}</span>
                                     @if( ($module['completed_count'] / $module['items_count']) == 1)
@@ -59,6 +60,9 @@
                                     <x-heroicon-s-check-circle class="w-5 h-5 text-gray-400"/>
                                     @endif
                                 </div>
+                                @else
+                                <div class="text-sm text-gray-500 underline">No items available.</div>
+                                @endif
                             </div>
                         </div>
                         @endforeach

@@ -242,8 +242,6 @@ class CoursePlayer extends Component
         # Display
         $this->selected_answer = $answerId;
         $this->is_correct = $answer->is_correct;
-
-        $this->skipRender();
     }
 
     

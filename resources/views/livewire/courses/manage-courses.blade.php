@@ -98,7 +98,7 @@
         <section class="mt-8 text-darkgreen">
             <div class="grid gap-6 lg:grid-cols-3">
                 @foreach($courses as $course)
-                <div class="p-4 bg-white border rounded-md shadow-md">
+                <div class="flex flex-col p-4 bg-white border rounded-md shadow-md">
                     <div>
                         @if($course->icon == 'lightning')
                         <x-heroicon-s-lightning-bolt class="w-10 h-10 text-gray-600"/>
@@ -109,7 +109,7 @@
                     <p class="mt-1 text-orange-600">Course</p>
                     <h3 class="mt-2 text-lg font-bold">{{ $course->title }}</h3>
                     <div class="text-gray-600">{{ Str::limit($course->description, 100) }}</div>
-                    <div class="flex items-center justify-between mt-4">
+                    <div class="flex items-end justify-between flex-grow w-full mt-4">
                         <div class="flex gap-3">
                             <div class="flex items-center gap-1">
                                 <x-heroicon-o-template class="w-4 h-4 text-gray-400"/>

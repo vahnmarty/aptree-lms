@@ -30,7 +30,10 @@ class ModuleItem extends Model implements Sortable
 
     public function getImage()
     {
-        return Storage::disk('do')->url($this->image);
+        if($this->image){
+            return Storage::disk('do')->url($this->image);
+        }
+        return '';
     }
 
     public function getImageUrlAttribute()
