@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('provider_id')->nullable()->after('id');
+            $table->string('password')->nullable()->change();
         });
     }
 
