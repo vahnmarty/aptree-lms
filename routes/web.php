@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AiController;
 use App\Http\Livewire\TeamInvitations;
 use App\Http\Livewire\TemplateLibrary;
+use App\Http\Controllers\PageController;
 use App\Http\Livewire\Courses\EditCourse;
 use App\Http\Livewire\Courses\ShowCourse;
 use App\Http\Livewire\Pathway\ShowPathway;
@@ -25,6 +26,7 @@ use App\Http\Livewire\Pathway\PathwayBuilder;
 use App\Http\Controllers\InvitationController;
 use App\Http\Livewire\Pathway\PathwayContents;
 use App\Http\Livewire\Courses\ModuleItemPreview;
+use App\Http\Controllers\SocialiteLoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +40,9 @@ use App\Http\Livewire\Courses\ModuleItemPreview;
 */
 
 Route::redirect('/', 'login');
+
+Route::get('login/{provider}', [SocialiteLoginController::class, 'redirectToProvider']);
+Route::get('login/{provider}/callback', [SocialiteLoginController::class, 'handleProviderCallback']);
 
 Route::get('chatgpt', [AiController::class, 'chatgpt']);
 
