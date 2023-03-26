@@ -87,8 +87,11 @@
                     <select class="text-sm border border-gray-200 rounded-md">
                         <option value="">Filter by Author</option>
                     </select>
-                    <select class="text-sm border border-gray-200 rounded-md">
+                    <select wire:model="category_id" class="w-48 text-sm border border-gray-200 rounded-md">
                         <option value="">Filter by category</option>
+                        @foreach($categories as $category)
+                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        @endforeach
                     </select>
                 </div>
             </div>

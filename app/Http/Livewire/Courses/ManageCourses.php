@@ -6,12 +6,17 @@ use Auth;
 use App\Models\Course;
 use Livewire\Component;
 use App\Enums\CourseStatus;
+use App\Models\CourseCategory;
 
 class ManageCourses extends Component
 {
     public $filter = '', $counts = [];
 
+    public $categories = [];
+    
     public $courses = [];
+
+    public $category_id;
 
     protected $queryString = ['filter'];
 
@@ -23,6 +28,8 @@ class ManageCourses extends Component
     public function mount()
     {
         $this->getCourses();
+        
+        $this->categories = CourseCategory::get();
 
         $this->counts['total'] = Course::count();
         $this->counts['published'] = Course::where('status', CourseStatus::Published)->count();
@@ -33,16 +40,29 @@ class ManageCourses extends Component
     public function getCourses()
     {
         if($this->filter == 'published'){
-            $this->courses = Course::where('status', CourseStatus::Published)->latest()->get();
+            $query = Course::where('status', CourseStatus::Published)->latest();
         }
         elseif($this->filter == 'draft'){
-            $this->courses = Course::where('status', CourseStatus::Draft)->latest()->get();
+            $query = Course::where('status', CourseStatus::Draft)->latest();
         }
         elseif($this->filter == 'deleted'){
-            $this->courses = Course::withTrashed()->whereNotNull('deleted_at')->latest()->get();
+            $query = Course::withTrashed()->whereNotNull('deleted_at')->latest();
         }
         else{
-            $this->courses = Course::latest()->get();
+            $query = Course::latest();
         }
+
+        if($this->category_id)
+        {
+            $query = $query->where('category_id', $this->category_id);
+        }
+
+        $this->courses = $query->get();
+
+    }
+
+    public function updatedCategoryId()
+    {
+        $this->getCourses();
     }
 }
