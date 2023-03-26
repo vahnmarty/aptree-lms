@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2f99ae9d1795538a83fb3f8c08c298cb",
+    "content-hash": "0a0c9aa44b12a19e5360836e433cb817",
     "packages": [
         {
             "name": "akaunting/laravel-money",
@@ -6414,6 +6414,47 @@
                 "source": "https://github.com/socialiteproviders/manager"
             },
             "time": "2023-01-26T23:11:27+00:00"
+        },
+        {
+            "name": "socialiteproviders/twitter",
+            "version": "4.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/SocialiteProviders/Twitter.git",
+                "reference": "e5edf2b6e3f37e64be6488111629ed5e41e645ad"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/SocialiteProviders/Twitter/zipball/e5edf2b6e3f37e64be6488111629ed5e41e645ad",
+                "reference": "e5edf2b6e3f37e64be6488111629ed5e41e645ad",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": "^7.2 || ^8.0",
+                "socialiteproviders/manager": "~4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "SocialiteProviders\\Twitter\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Brian Faust",
+                    "email": "hello@brianfaust.de"
+                }
+            ],
+            "description": "Twitter OAuth1 Provider for Laravel Socialite",
+            "support": {
+                "source": "https://github.com/SocialiteProviders/Twitter/tree/4.1.1"
+            },
+            "time": "2021-01-29T05:41:11+00:00"
         },
         {
             "name": "spatie/eloquent-sortable",

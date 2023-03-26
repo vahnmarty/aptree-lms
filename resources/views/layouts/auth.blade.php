@@ -28,6 +28,11 @@
             {{ $slot }}
         </div>
 
+
+        <div class="flex justify-center pb-6 bg-gray-100">
+            <p class="text-sm text-gray-700">View our <a href="{{ url('terms-of-service') }}" target="_blank" class="font-bold">terms and conditions</a> & <a href="{{ url('privacy-policy') }}" target="_blank" class="font-bold">privacy policy</a></p>
+        </div>
+        
         @livewireScripts
 
         @stack('scripts')
