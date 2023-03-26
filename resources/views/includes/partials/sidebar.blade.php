@@ -83,12 +83,6 @@
                             </x-slot>
                         </x-sidebar-item>
 
-                        <x-sidebar-item label="Billing" link="{{ url('billing') }}" :active="request()->is('billing*') ">
-                            <x-slot name="icon">
-                                <x-heroicon-s-credit-card class="flex-shrink-0 w-6 h-6 ml-1 mr-4 text-gray-500"/>
-                            </x-slot>
-                        </x-sidebar-item>
-
                     @endif
 
                     @if (null)

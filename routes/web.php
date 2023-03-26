@@ -43,6 +43,8 @@ Route::redirect('/', 'login');
 
 Route::get('login/{provider}', [SocialiteLoginController::class, 'redirectToProvider']);
 Route::get('login/{provider}/callback', [SocialiteLoginController::class, 'handleProviderCallback']);
+Route::get('login/facebook/delete/callback', [SocialiteLoginController::class, 'deleteFacebookData']);
+Route::get('login/facebook/delete/status', [SocialiteLoginController::class, 'checkIfFacebookUserIsDeleted']);
 
 Route::get('chatgpt', [AiController::class, 'chatgpt']);
 
