@@ -98,6 +98,36 @@
                 </a>
             </div>
 
+            @push('scripts')
+
+            <script>
+                window.fbAsyncInit = function() {
+                FB.init({
+                    appId      : '924627508738067',
+                    cookie     : true,
+                    xfbml      : true,
+                    version    : 'v16.0'
+                });
+                    
+                FB.AppEvents.logPageView();   
+                    
+                };
+            
+                (function(d, s, id){
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) {return;}
+                js = d.createElement(s); js.id = id;
+                js.src = "https://connect.facebook.net/en_US/sdk.js";
+                fjs.parentNode.insertBefore(js, fjs);
+                }(document, 'script', 'facebook-jssdk'));
+            </script>
+            @endpush
+
+            <div>
+
+                <div class="fb-login-button" data-width="" data-size="" data-button-type="" data-layout="" data-auto-logout-link="false" data-use-continue-as="false"></div>
+            </div>
+
             <div class="flex justify-center mt-8 divide-x">
 
                 <p class="pr-8 text-sm">New User? <a href="{{ url('register') }}" class="font-bold text-darkgreen">Sign Up!</a></p>
