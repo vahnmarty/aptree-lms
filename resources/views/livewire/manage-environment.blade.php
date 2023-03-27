@@ -5,7 +5,9 @@
             <h1 class="text-3xl font-bold leading-7 text-darkgreen sm:leading-9">Environment</h1>
         </div>
         <div>
-            
+            <a href=""  class="btn-primary">
+                Force Reload
+            </a>
         </div>
     </header>
     
@@ -17,7 +19,7 @@
         
         <div class="grid grid-cols-3 gap-8">
             <div>
-                <ul role="list" class="bg-white divide-y divide-gray-200 shadow-md">
+                <ul role="list" class="bg-white divide-y divide-gray-200 shadow-md ">
                   <li class="">
                     <a href="#app" class="flex px-6 py-4 space-x-3 border-l-4 hover:bg-darkgreen/20 border-darkgreen">
                       <x-heroicon-s-cog class="w-6 h-6 text-gray-600 group-hover:text-white"/>
@@ -67,7 +69,7 @@
                     <div>
                         <div class="p-6 mt-8 bg-white border rounded-md">
                             
-                            <form action="">
+                            <form wire:submit.prevent="saveAppForm">
                                 {{ $this->appForm }}
         
                                 <button type="submit" class="mt-4 btn-primary btn-sm">Save Changes</button>

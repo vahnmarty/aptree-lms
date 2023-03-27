@@ -35,3 +35,4 @@ if (! function_exists('site_logo')) {
         return asset('storage/' . $file);
     }
 }
+

@@ -47,8 +47,11 @@
                     @yield('content')
                     {{ $slot ?? '' }}
                 </div>
+
+                @include('includes.partials.footer')
             </main>
         </div>
+
     </div>
 
 
