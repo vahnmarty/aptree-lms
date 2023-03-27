@@ -12,6 +12,7 @@ use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\CheckboxList;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Filament\Forms\Concerns\InteractsWithForms;
+use File;
 
 class ManageSettings extends Component implements HasForms
 {
@@ -89,4 +90,6 @@ class ManageSettings extends Component implements HasForms
 
         return redirect('/settings');
     }
+
+    
 }

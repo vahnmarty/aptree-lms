@@ -77,6 +77,12 @@
                             </x-slot>
                         </x-sidebar-item>
 
+                        <x-sidebar-item label="Environment" link="{{ route('env.index') }}" :active="request()->is('env*') ">
+                            <x-slot name="icon">
+                                <x-heroicon-s-adjustments class="flex-shrink-0 w-6 h-6 ml-1 mr-4 text-gray-500"/>
+                            </x-slot>
+                        </x-sidebar-item>
+
                         <x-sidebar-item label="Users" link="{{ route('users.index') }}" :active="request()->is('users*') ">
                             <x-slot name="icon">
                                 <x-heroicon-s-users class="flex-shrink-0 w-6 h-6 ml-1 mr-4 text-gray-500"/>

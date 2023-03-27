@@ -13,6 +13,7 @@ use App\Http\Controllers\AiController;
 use App\Http\Livewire\TeamInvitations;
 use App\Http\Livewire\TemplateLibrary;
 use App\Http\Controllers\PageController;
+use App\Http\Livewire\ManageEnvironment;
 use App\Http\Livewire\Courses\EditCourse;
 use App\Http\Livewire\Courses\ShowCourse;
 use App\Http\Livewire\Pathway\ShowPathway;
@@ -25,6 +26,7 @@ use App\Http\Livewire\Pathway\ManagePathways;
 use App\Http\Livewire\Pathway\PathwayBuilder;
 use App\Http\Controllers\InvitationController;
 use App\Http\Livewire\Pathway\PathwayContents;
+use App\Http\Controllers\EnvironmentController;
 use App\Http\Livewire\Courses\ModuleItemPreview;
 use App\Http\Controllers\SocialiteLoginController;
 
@@ -82,6 +84,7 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('billing', ManageBilling::class)->name('billing.index');
     Route::get('invitations', Invitations::class)->name('invitations.index');
     Route::get('support', SupportPage::class)->name('support');
+    Route::get('env', ManageEnvironment::class)->name('env.index');
 });
 
 // Route::get('invitation/{token}', [InvitationController::class, 'accept'])->name('invitation.accept');
