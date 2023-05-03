@@ -61,6 +61,10 @@ class CoursePlayer extends Component
         else{
 
             $enrollment_module = EnrollmentModule::with('module')->where('enrollment_id', $this->enrollment->id)->whereNull('completed_at')->first();
+            
+            if(!$enrollment_module){
+                return $this->freshStart();
+            }
 
             $this->module = $enrollment_module->module;
             $this->module_id = $enrollment_module->module_id;
@@ -69,6 +73,12 @@ class CoursePlayer extends Component
         }
 
         $this->contents = ModuleItem::with('question.randomAnswers')->where('module_id', $this->module_id)->ordered()->get()->toArray();
+    }
+
+    public function freshStart()
+    {
+        $this->module = Course::find($this->course->id)->firstModule();
+        $this->module_id = $this->module->id;
     }
 
 

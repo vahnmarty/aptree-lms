@@ -22,6 +22,11 @@ class Course extends Model
         return $this->hasMany(Module::class);
     }
 
+    public function firstModule()
+    {
+        return $this->modules()->first();
+    }
+
     public function category()
     {
         return $this->belongsTo(CourseCategory::class);
