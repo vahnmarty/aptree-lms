@@ -57,19 +57,21 @@ class AiQuestionGenerator extends Component implements HasForms
 
         $data = $this->form->getState();
 
-        $prompt = $data['prompt'];
+        $user_prompt = $data['prompt'];
+
+        $system_prompt = 'Please generate 5 items of multiple-choice type questionnaire that covers the main topics and key points discussed in the article. The output should be in JSON format and grouped in a key called "questions". Each item must have these keys: "question", "choices", "answer" and "explanation". Note that the correct answer should be put at the first option.';
+
+
+        $messages[] = [
+            'role' => 'system', 
+            'content' =>  $system_prompt
+        ];
 
         $messages[] = [
             'role' => 'user', 
-            'content' => 'Write 3 possible questions, each question should have 4 choices and 1 correct answer from this article : "' . $prompt. '"'
+            'content' =>  $user_prompt
         ];
 
-        $token = config('services.openai.chatgpt.questgen');
-
-        $messages[] = [
-            'role' => 'user',
-            'content' => decrypt($token)
-        ];
 
         Log::channel('openai')->info(json_encode($messages));
 
