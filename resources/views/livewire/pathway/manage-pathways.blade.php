@@ -77,18 +77,21 @@
                 </div>
             </div>
 
-            <div class="grid gap-6 mt-8 lg:grid-cols-2">
+            <div class="grid gap-6 mt-8 md:grid-cols-3">
 
                 @foreach($pathways as $pathway)
-                <div wire:key="grid-pathway-{{ $pathway->id }}" class="p-6 bg-white border rounded-md">
+                <div wire:key="grid-pathway-{{ $pathway->id }}" class="flex flex-col p-6 space-y-2 bg-white border rounded-md">
+                    <div class="">
+                        <x-heroicon-s-cube-transparent class="w-10 h-10 text-darkgreen "/>
+                    </div>
+                    <p class="mt-1 text-orange-600">Pathway</p>
                     <div>
-                        <x-heroicon-s-template class="w-10 h-10 text-gray-400"/>
+                        <h3 class="text-lg font-bold text-darkgreen">{{ $pathway->title }}</h3>
+                        <div class="mt-2 text-gray-600">
+                            {{ Str::limit($pathway->description, 200) }}
+                        </div>
                     </div>
-                    <h3 class="mt-2 text-lg font-bold text-darkgreen">{{ $pathway->title }}</h3>
-                    <div class="mt-2 text-gray-600">
-                        {{ $pathway->description }}
-                    </div>
-                    <div class="flex justify-between mt-8">
+                    <div class="flex items-end justify-between flex-grow w-full mt-4">
                         <div class="flex gap-3">
                             <div class="flex items-center gap-1">
                                 <x-heroicon-s-template class="w-4 h-4 text-gray-400"/>
